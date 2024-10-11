@@ -1,0 +1,4 @@
+-   Alterar unidade para ENUM
+-   Alterar tipo de registro para Enum
+-   Adicionar campo price no produto
+-   Alterar code para ID
