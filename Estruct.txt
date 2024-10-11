@@ -1,0 +1,78 @@
+    br.com.silveira.productionorder.model
+        Este pacote vai conter as classes que representam os dados e entidades do sistema (o "Model" do MVC).
+        Classes sugeridas:
+            Produto
+            Grupo
+            Unidade
+            Composicao
+            Cadastro (cliente, fornecedor, transportadora)
+            Endereco
+            OrdemProducao
+
+    br.com.silveira.productionorder.view
+        Aqui vão as classes relacionadas à interface gráfica com o usuário (o "View" do MVC). Usando Swing, você terá janelas, diálogos, e componentes visuais.
+        Classes sugeridas:
+            MainFrame (janela principal do sistema)
+            ProdutoForm (formulário para cadastro e edição de produtos)
+            OrdemProducaoForm (formulário para criação de ordens de produção)
+            CadastroForm (formulário de cadastro de clientes, fornecedores, etc.)
+            ComposicaoForm (formulário para composição de produtos)
+        Aqui você também pode ter subpacotes como br.com.silveira.productionorder.view.components para componentes personalizados (ex: botões, tabelas).
+
+    br.com.silveira.productionorder.controller
+        Esse pacote será responsável por coordenar a interação entre o "Model" e o "View" (o "Controller" do MVC).
+        Classes sugeridas:
+            ProdutoController
+            OrdemProducaoController
+            CadastroController
+            ComposicaoController
+        O controller deve conter a lógica de negócios e gerenciar eventos da interface gráfica, como cliques de botões e submissões de formulários.
+
+    br.com.silveira.productionorder.repository
+        Este pacote vai lidar com as interações com o banco de dados, utilizando SQL para acessar, inserir, atualizar e excluir dados. Aqui podem ser implementados padrões como DAO (Data Access Object).
+        Classes sugeridas:
+            ProdutoDAO (operações de CRUD para o Produto)
+            OrdemProducaoDAO (operações de CRUD para a ordem de produção)
+            CadastroDAO
+            ComposicaoDAO
+            ConnectionFactory (classe para gerenciar conexões com o banco de dados)
+
+    br.com.silveira.productionorder.util
+        Utilitário para classes auxiliares que podem ser usadas em todo o sistema.
+        Classes sugeridas:
+            DateFormatter (formatar e converter datas)
+            Validator (validação de campos)
+            Constants (constantes globais do sistema)
+
+    br.com.silveira.productionorder.service (Opcional)
+        Caso você precise de uma camada adicional para lógica de negócios mais complexa, pode adicionar um pacote de serviços para separar essa lógica do controller.
+        Classes sugeridas:
+            ProdutoService
+            OrdemProducaoService
+
+com.silveira.productionorder
+├── model
+│   ├── Product.java
+│   ├── Group.java
+│   ├── Unit.java
+│   └── (other entities)
+├── view
+│   ├── MainFrame.java
+│   ├── ProductForm.java
+│   └── (other Swing forms)
+├── controller
+│   ├── ProductController.java
+│   ├── ProductionOrderController.java
+│   └── (other controllers)
+├── repository
+│   ├── ProductDAO.java
+│   ├── ProductionOrderDAO.java
+│   ├── ConnectionFactory.java
+│   └── (other DAOs)
+├── util
+│   ├── DateFormatter.java
+│   ├── Validator.java
+│   └── Constants.java
+└── service (optional)
+    ├── ProductService.java
+    └── (other services)
