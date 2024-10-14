@@ -8,6 +8,5 @@ public class DebugGroupDAO {
         Group group = new Group();
         group.setName("test");
         GroupDAO.addGroup(group);
-
     }
 }

@@ -3,17 +3,17 @@ package model;
 import model.enums.EnumUnit;
 
 public class Unit {
-    private int id;
+    private Integer id;
     private String name;
     private EnumUnit unit;
 
     public Unit() {}
 
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

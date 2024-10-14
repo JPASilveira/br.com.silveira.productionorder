@@ -46,6 +46,7 @@ public class AddressDAO {
             }
             sql.append("number = ?");
             hasNumber = true;
+            isFirst = false;
         }
 
         if (address.getNeighborhood() != null) {
@@ -54,6 +55,7 @@ public class AddressDAO {
             }
             sql.append("neighborhood = ?");
             hasNeighborhood = true;
+            isFirst = false;
         }
 
         if (address.getCity() != null) {
@@ -62,6 +64,7 @@ public class AddressDAO {
             }
             sql.append("city = ?");
             hasCity = true;
+            isFirst = false;
         }
 
         if (address.getState() != null) {
@@ -70,6 +73,7 @@ public class AddressDAO {
             }
             sql.append("state = ?");
             hasState = true;
+            isFirst = false;
         }
 
         sql.append(" WHERE id = ?");

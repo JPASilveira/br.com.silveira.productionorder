@@ -1,18 +1,18 @@
 package model;
 
 public class Composition {
-    private int id;
+    private Integer id;
     private Product parentProduct;
     private Product compositionProduct;
-    private double quantityUsed;
+    private Double quantityUsed;
 
     public Composition() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,11 +32,11 @@ public class Composition {
         this.compositionProduct = compositionProduct;
     }
 
-    public double getQuantityUsed() {
+    public Double getQuantityUsed() {
         return quantityUsed;
     }
 
-    public void setQuantityUsed(double quantityUsed) {
+    public void setQuantityUsed(Double quantityUsed) {
         this.quantityUsed = quantityUsed;
     }
 }

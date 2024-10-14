@@ -5,21 +5,21 @@ import model.enums.EnumProductionOrder;
 import java.util.List;
 
 public class ProductionOrder {
-    private int id;
+    private Integer id;
     private Registration recipient;
     private Product product;
-    private double quantity;
+    private Double quantity;
     private EnumProductionOrder status;
     private List<Composition> compositions;
-    private double orderCost;
+    private Double orderCost;
 
     public ProductionOrder() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -39,11 +39,11 @@ public class ProductionOrder {
         this.product = product;
     }
 
-    public double getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 
@@ -63,11 +63,11 @@ public class ProductionOrder {
         this.compositions = compositions;
     }
 
-    public double getOrderCost() {
+    public Double getOrderCost() {
         return orderCost;
     }
 
-    public void setOrderCost(double orderCost) {
+    public void setOrderCost(Double orderCost) {
         this.orderCost = orderCost;
     }
 }

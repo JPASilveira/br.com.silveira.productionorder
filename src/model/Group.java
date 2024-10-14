@@ -1,16 +1,16 @@
 package model;
 
 public class Group {
-    private int id;
+    private Integer id;
     private String name;
 
     public Group(){}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

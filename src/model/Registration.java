@@ -3,7 +3,7 @@ package model;
 import model.enums.EnumRegistration;
 
 public class Registration {
-    private int id;
+    private Integer id;
     private EnumRegistration registrationType;
     private String name;
     private String document;
@@ -11,11 +11,11 @@ public class Registration {
 
     public Registration() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

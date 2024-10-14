@@ -38,7 +38,6 @@ public class UnitDAO {
                 sql.append(", ");
             }
             sql.append("unit = ?");
-            hasUnit = true;
         }
 
         sql.append(" WHERE id = ?");
