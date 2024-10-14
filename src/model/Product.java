@@ -21,6 +21,9 @@ public class Product {
     }
 
     public String getReference() {
+        if(reference == null) {
+            return "No reference";
+        }
         return reference;
     }
 
@@ -52,7 +55,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public boolean isComposite() {
+    public boolean getIsComposite() {
         return isComposite;
     }
 

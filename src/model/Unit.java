@@ -10,7 +10,7 @@ public class Unit {
     public Unit() {}
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -25,8 +25,8 @@ public class Unit {
         this.name = name;
     }
 
-    public EnumUnit getUnit() {
-        return unit;
+    public String getUnit() {
+        return this.unit.name();
     }
 
     public void setUnit(EnumUnit unit) {
