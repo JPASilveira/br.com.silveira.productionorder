@@ -4,7 +4,9 @@
     <file url="file://$PROJECT_DIR$/src/repository/AddressDAO.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/repository/ConnectionFactory.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/repository/GroupDAO.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/repository/ProductCompositionDAO.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/repository/ProductDAO.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/repository/RegistrationDAO.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/repository/UnitDAO.java" dialect="GenericSQL" />
   </component>
 </project>

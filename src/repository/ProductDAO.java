@@ -96,7 +96,7 @@ public class ProductDAO {
             hasUnitId = true;
         }
 
-        sql.append(" WHERE Reference = ?");
+        sql.append(" WHERE id = ?");
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())){
@@ -130,6 +130,8 @@ public class ProductDAO {
                 preparedStatement.setInt(parameterIndex++, product.getUnit().getId());
             }
 
+            preparedStatement.setInt(parameterIndex++, product.getId());
+
             preparedStatement.executeUpdate();
         }catch (SQLException e){
             throw new ExceptionProductDAO("error while updating product", e);
@@ -137,7 +139,7 @@ public class ProductDAO {
     }
 
     public static void deleteProduct(Product product) {
-        String sql = "DELETE FROM Product WHERE Reference = ?";
+        String sql = "DELETE FROM Product WHERE id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){

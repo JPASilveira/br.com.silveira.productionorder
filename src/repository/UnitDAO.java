@@ -53,6 +53,7 @@ public class UnitDAO {
                 preparedStatement.setString(parameterIndex++, unit.getUnit());
             }
 
+            preparedStatement.setInt(parameterIndex++, unit.getId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionUnitDAO("error while updating unit", e);
