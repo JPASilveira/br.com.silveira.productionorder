@@ -11,5 +11,22 @@ public class DebugUnitDAO {
         productUnit.setUnitName("Kilogram");
         productUnit.setUnitAcronym(EnumUnit.KG);
 
+        switch(operation){
+            case "add":
+                ProductUnitDAO.addUnit(productUnit);
+                break;
+
+            case "update":
+                ProductUnitDAO.updateUnit(productUnit);
+                break;
+
+            case "delete":
+                ProductUnitDAO.deleteUnit(productUnit);
+                break;
+        }
     }
+
+    public static void main(String[] args) {
+        testUnit("add");
     }
+}

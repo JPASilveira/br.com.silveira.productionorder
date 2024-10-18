@@ -1,13 +1,20 @@
 package repository;
 
+import model.ProductUnit;
+import repository.exceptions.ExceptionUnitDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class ProductUnitDAO {
-    /*public static void addUnit(ProductUnit productUnit) {
-        String sql = "INSERT INTO ProductUnit (name, unit) VALUES (?, ?)";
+    public static void addUnit(ProductUnit productUnit) {
+        String sql = "INSERT INTO product_unit (unit_name, unit_acronym) VALUES (?, ?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, productUnit.getName());
-            preparedStatement.setString(2, productUnit.getUnit());
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, productUnit.getUnitName());
+            preparedStatement.setString(2, productUnit.getUnitAcronym());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionUnitDAO("error while adding productUnit", e);
@@ -15,38 +22,39 @@ public class ProductUnitDAO {
     }
 
     public static void updateUnit(ProductUnit productUnit) {
-        StringBuilder sql = new StringBuilder("UPDATE Applicant SET ");
-        boolean hasName = false;
-        boolean hasUnit = false;
+        StringBuilder sql = new StringBuilder("UPDATE product_unit SET ");
+        boolean hasUnitName = false;
+        boolean hasUnitAcronym = false;
         boolean isFirst = true;
 
-        if (productUnit.getName() != null) {
-            sql.append("name = ?");
-            hasName = true;
+        if (productUnit.getUnitName() != null) {
+            sql.append("unit_name = ?");
+            hasUnitName = true;
             isFirst = false;
         }
 
-        if (productUnit.getUnit() != null) {
+        if (productUnit.getUnitAcronym() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("productUnit = ?");
+            sql.append("unit_acronym = ?");
+            hasUnitAcronym = true;
         }
 
-        sql.append(" WHERE id = ?");
+        sql.append(" WHERE unit_id = ?");
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())){
             int parameterIndex = 1;
 
-            if (hasName) {
-                preparedStatement.setString(parameterIndex++, productUnit.getName());
+            if (hasUnitName) {
+                preparedStatement.setString(parameterIndex++, productUnit.getUnitName());
             }
-            if (hasUnit) {
-                preparedStatement.setString(parameterIndex++, productUnit.getUnit());
+            if (hasUnitAcronym) {
+                preparedStatement.setString(parameterIndex++, productUnit.getUnitAcronym());
             }
 
-            preparedStatement.setInt(parameterIndex++, productUnit.getId());
+            preparedStatement.setInt(parameterIndex++, productUnit.getUnitId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionUnitDAO("error while updating productUnit", e);
@@ -54,14 +62,14 @@ public class ProductUnitDAO {
     }
 
     public static void deleteUnit(ProductUnit productUnit) {
-        String sql = "DELETE FROM Applicant WHERE id = ?";
+        String sql = "DELETE FROM product_unit WHERE unit_id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, productUnit.getId());
+            preparedStatement.setInt(1, productUnit.getUnitId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new ExceptionUnitDAO("error while deleting productUnit", e);
         }
-    }*/
+    }
 }

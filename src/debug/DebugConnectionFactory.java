@@ -10,10 +10,8 @@ public class DebugConnectionFactory {
     public static void main(String[] args) {
         try (Connection connection = ConnectionFactory.getConnection()){
             ConnectionFactory.createTables(connection);
-        }catch (ExceptionConnectionFactory e){
-            System.out.println(e.getMessage());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        }catch (ExceptionConnectionFactory | SQLException e){
+            System.out.println(e.getMessage() + e.getCause());
         }
     }
 }

@@ -22,8 +22,8 @@ public class ConnectionFactory {
     }
 
     public static void createTables(Connection connection) {
-        String createTableAddress = """
-        CREATE TABLE IF NOT EXISTS address (
+        String createTableRegistrationAddress = """
+        CREATE TABLE IF NOT EXISTS registration_address (
         address_id INT AUTO_INCREMENT PRIMARY KEY,
         address_street VARCHAR(255) NOT NULL,
         address_number VARCHAR(10) NOT NULL,
@@ -40,7 +40,7 @@ public class ConnectionFactory {
         registration_name VARCHAR(255) NOT NULL,
         registration_document VARCHAR(100) NOT NULL,
         registration_address_id INT,
-        CONSTRAINT fk_address FOREIGN KEY (registration_address_id) REFERENCES address(address_id)
+        CONSTRAINT fk_registration_address FOREIGN KEY (registration_address_id) REFERENCES registration_address(address_id)
         );
         """;
 
@@ -110,7 +110,7 @@ public class ConnectionFactory {
         """;
 
         try (Statement statement = connection.createStatement()) {
-            statement.execute(createTableAddress);
+            statement.execute(createTableRegistrationAddress);
             statement.execute(createTableRegistration);
             statement.execute(createTableProductUnit);
             statement.execute(createTableProductGroup);

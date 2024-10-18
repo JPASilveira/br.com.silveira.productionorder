@@ -25,8 +25,11 @@ public class ProductUnit {
         this.unitName = unitName;
     }
 
-    public EnumUnit getUnitAcronym() {
-        return unitAcronym;
+    public String getUnitAcronym() {
+        if (unitAcronym == null) {
+            return null;
+        }
+        return unitAcronym.name();
     }
 
     public void setUnitAcronym(EnumUnit unitAcronym) {

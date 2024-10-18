@@ -1,6 +1,6 @@
 package model;
 
-public class Address {
+public class RegistrationAddress {
     private Integer addressId;
     private String addressStreet;
     private String addressNumber;
@@ -8,7 +8,7 @@ public class Address {
     private String addressCity;
     private String addressState;
 
-    public Address(){}
+    public RegistrationAddress(){}
 
     public Integer getAddressId() {
         return addressId;
