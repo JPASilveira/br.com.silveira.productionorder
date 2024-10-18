@@ -3,51 +3,51 @@ package model;
 import model.enums.EnumRegistration;
 
 public class Registration {
-    private Integer id;
+    private Integer registrationId;
     private EnumRegistration registrationType;
-    private String name;
-    private String document;
-    private Address address;
+    private String registrationName;
+    private String registrationDocument;
+    private Address registrationAddress;
 
     public Registration() {}
 
-    public Integer getId() {
-        return id;
+    public Integer getRegistrationId() {
+        return registrationId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRegistrationId(Integer registrationId) {
+        this.registrationId = registrationId;
     }
 
-    public String getRegistrationType() {
-        return this.registrationType.name();
+    public EnumRegistration getRegistrationType() {
+        return registrationType;
     }
 
     public void setRegistrationType(EnumRegistration registrationType) {
         this.registrationType = registrationType;
     }
 
-    public String getName() {
-        return name;
+    public String getRegistrationName() {
+        return registrationName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRegistrationName(String registrationName) {
+        this.registrationName = registrationName;
     }
 
-    public String getDocument() {
-        return document;
+    public String getRegistrationDocument() {
+        return registrationDocument;
     }
 
-    public void setDocument(String document) {
-        this.document = document;
+    public void setRegistrationDocument(String registrationDocument) {
+        this.registrationDocument = registrationDocument;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getRegistrationAddress() {
+        return registrationAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setRegistrationAddress(Address registrationAddress) {
+        this.registrationAddress = registrationAddress;
     }
 }

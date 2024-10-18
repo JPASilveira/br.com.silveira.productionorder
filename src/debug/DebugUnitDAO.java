@@ -1,14 +1,15 @@
 package debug;
 
-import model.Unit;
+import model.ProductUnit;
 import model.enums.EnumUnit;
-import repository.UnitDAO;
+import repository.ProductUnitDAO;
 
 public class DebugUnitDAO {
-    public static void main(String[] args) {
-        Unit unit = new Unit();
-        unit.setName("KILO");
-        unit.setUnit(EnumUnit.KG);
-        UnitDAO.addUnit(unit);
+    public static void testUnit(String operation){
+        ProductUnit productUnit = new ProductUnit();
+        productUnit.setUnitId(1);
+        productUnit.setUnitName("Kilogram");
+        productUnit.setUnitAcronym(EnumUnit.KG);
+
     }
-}
+    }

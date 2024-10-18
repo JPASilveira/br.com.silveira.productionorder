@@ -4,7 +4,7 @@ import model.Address;
 import repository.AddressDAO;
 
 public class DebugAddressDAO {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Address address = new Address();
         address.setStreet("Rua Teste");
         address.setNumber("00");
@@ -12,5 +12,5 @@ public class DebugAddressDAO {
         address.setCity("Cidade Teste");
         address.setState("TE");
         AddressDAO.addAddress(address);
-    }
+    }*/
 }

@@ -5,69 +5,69 @@ import model.enums.EnumProductionOrder;
 import java.util.List;
 
 public class ProductionOrder {
-    private Integer id;
-    private Registration recipient;
-    private Product product;
-    private Double quantity;
-    private EnumProductionOrder status;
-    private List<Composition> compositions;
-    private Double orderCost;
+    private Integer productionOrderId;
+    private Registration productionOrderRecipient;
+    private Product productionOrderProduct;
+    private Double productionOrderQuantity;
+    private EnumProductionOrder productionOrderStatus;
+    private List<ProductComposition> productionOrderCompositions;
+    private Double productionOrderCost;
 
     public ProductionOrder() {}
 
-    public Integer getId() {
-        return id;
+    public Integer getProductionOrderId() {
+        return productionOrderId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProductionOrderId(Integer productionOrderId) {
+        this.productionOrderId = productionOrderId;
     }
 
-    public Registration getRecipient() {
-        return recipient;
+    public Registration getProductionOrderRecipient() {
+        return productionOrderRecipient;
     }
 
-    public void setRecipient(Registration recipient) {
-        this.recipient = recipient;
+    public void setProductionOrderRecipient(Registration productionOrderRecipient) {
+        this.productionOrderRecipient = productionOrderRecipient;
     }
 
-    public Product getProduct() {
-        return product;
+    public Product getProductionOrderProduct() {
+        return productionOrderProduct;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductionOrderProduct(Product productionOrderProduct) {
+        this.productionOrderProduct = productionOrderProduct;
     }
 
-    public Double getQuantity() {
-        return quantity;
+    public Double getProductionOrderQuantity() {
+        return productionOrderQuantity;
     }
 
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
+    public void setProductionOrderQuantity(Double productionOrderQuantity) {
+        this.productionOrderQuantity = productionOrderQuantity;
     }
 
-    public EnumProductionOrder getStatus() {
-        return status;
+    public EnumProductionOrder getProductionOrderStatus() {
+        return productionOrderStatus;
     }
 
-    public void setStatus(EnumProductionOrder status) {
-        this.status = status;
+    public void setProductionOrderStatus(EnumProductionOrder productionOrderStatus) {
+        this.productionOrderStatus = productionOrderStatus;
     }
 
-    public List<Composition> getCompositions() {
-        return compositions;
+    public List<ProductComposition> getProductionOrderCompositions() {
+        return productionOrderCompositions;
     }
 
-    public void setCompositions(List<Composition> compositions) {
-        this.compositions = compositions;
+    public void setProductionOrderCompositions(List<ProductComposition> productionOrderCompositions) {
+        this.productionOrderCompositions = productionOrderCompositions;
     }
 
-    public Double getOrderCost() {
-        return orderCost;
+    public Double getProductionOrderCost() {
+        return productionOrderCost;
     }
 
-    public void setOrderCost(Double orderCost) {
-        this.orderCost = orderCost;
+    public void setProductionOrderCost(Double productionOrderCost) {
+        this.productionOrderCost = productionOrderCost;
     }
 }

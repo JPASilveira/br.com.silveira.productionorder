@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RegistrationDAO {
-    public static void registrationAdd(Registration registration) {
+    /*public static void registrationAdd(Registration registration) {
         String sql = "INSERT INTO Registration (RegistrationType, Name, Document, Address_ID) values(?,?,?,?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -102,5 +102,5 @@ public class RegistrationDAO {
         } catch (SQLException e) {
             throw new ExceptionRegistrationDAO("error while deleting registration", e);
         }
-    }
+    }*/
 }

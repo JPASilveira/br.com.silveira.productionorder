@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class DebugConnectionFactory {
     public static void main(String[] args) {
         try (Connection connection = ConnectionFactory.getConnection()){
-            ConnectionFactory.createTables(ConnectionFactory.getConnection());
+            ConnectionFactory.createTables(connection);
         }catch (ExceptionConnectionFactory e){
             System.out.println(e.getMessage());
         } catch (SQLException e) {

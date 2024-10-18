@@ -1,42 +1,42 @@
 package model;
 
 public class ProductComposition {
-    private Integer id;
-    private Product parentProduct;
-    private Product compositionProduct;
-    private Double quantityUsed;
+    private Integer productCompositionId;
+    private Product productCompositionParentProduct;
+    private Product productCompositionChildProduct;
+    private Double productCompositionQuantityUsed;
 
     public ProductComposition() {}
 
-    public Integer getId() {
-        return id;
+    public Integer getProductCompositionId() {
+        return productCompositionId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProductCompositionId(Integer productCompositionId) {
+        this.productCompositionId = productCompositionId;
     }
 
-    public Product getParentProduct() {
-        return parentProduct;
+    public Product getProductCompositionParentProduct() {
+        return productCompositionParentProduct;
     }
 
-    public void setParentProduct(Product parentProductID) {
-        this.parentProduct = parentProductID;
+    public void setProductCompositionParentProduct(Product productCompositionParentProduct) {
+        this.productCompositionParentProduct = productCompositionParentProduct;
     }
 
-    public Product getCompositionProduct() {
-        return compositionProduct;
+    public Product getProductCompositionChildProduct() {
+        return productCompositionChildProduct;
     }
 
-    public void setCompositionProduct(Product compositionProductID) {
-        this.compositionProduct = compositionProductID;
+    public void setProductCompositionChildProduct(Product productCompositionChildProduct) {
+        this.productCompositionChildProduct = productCompositionChildProduct;
     }
 
-    public Double getQuantityUsed() {
-        return quantityUsed;
+    public Double getProductCompositionQuantityUsed() {
+        return productCompositionQuantityUsed;
     }
 
-    public void setQuantityUsed(Double quantityUsed) {
-        this.quantityUsed = quantityUsed;
+    public void setProductCompositionQuantityUsed(Double productCompositionQuantityUsed) {
+        this.productCompositionQuantityUsed = productCompositionQuantityUsed;
     }
 }

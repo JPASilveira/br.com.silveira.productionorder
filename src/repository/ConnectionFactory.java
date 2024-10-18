@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConnectionFactory {
-    private static final String URL = "jdbc:h2:file:./src/database/productionOrder";
+    private static final String URL = "jdbc:h2:file:./src/database/production_order";
     private static final String USER = "sa";
     private static final String PASS = "";
 
@@ -23,99 +23,99 @@ public class ConnectionFactory {
 
     public static void createTables(Connection connection) {
         String createTableAddress = """
-        CREATE TABLE IF NOT EXISTS RegistrationAddress (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        street VARCHAR(255) NOT NULL,
-        number VARCHAR(10) NOT NULL,
-        neighborhood VARCHAR(100) NOT NULL,
-        city VARCHAR(100) NOT NULL,
-        state VARCHAR(2) NOT NULL
+        CREATE TABLE IF NOT EXISTS address (
+        address_id INT AUTO_INCREMENT PRIMARY KEY,
+        address_street VARCHAR(255) NOT NULL,
+        address_number VARCHAR(10) NOT NULL,
+        address_neighborhood VARCHAR(100) NOT NULL,
+        address_city VARCHAR(100) NOT NULL,
+        address_state VARCHAR(2) NOT NULL
         );
         """;
 
         String createTableRegistration = """
-        CREATE TABLE IF NOT EXISTS Registration (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        registrationType VARCHAR(50) NOT NULL,
-        name VARCHAR(255) NOT NULL,
-        document VARCHAR(100) NOT NULL,
-        address_id INT,
-        CONSTRAINT fk_address FOREIGN KEY (address_id) REFERENCES RegistrationAddress(id)
+        CREATE TABLE IF NOT EXISTS registration (
+        registration_id INT AUTO_INCREMENT PRIMARY KEY,
+        registration_type VARCHAR(50) NOT NULL,
+        registration_name VARCHAR(255) NOT NULL,
+        registration_document VARCHAR(100) NOT NULL,
+        registration_address_id INT,
+        CONSTRAINT fk_address FOREIGN KEY (registration_address_id) REFERENCES address(address_id)
         );
         """;
 
-        String createTableUnit = """
-        CREATE TABLE IF NOT EXISTS ProductUnit (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        unit VARCHAR(50) NOT NULL
+        String createTableProductUnit = """
+        CREATE TABLE IF NOT EXISTS product_unit (
+        unit_id INT AUTO_INCREMENT PRIMARY KEY,
+        unit_name VARCHAR(255) NOT NULL,
+        unit_acronym VARCHAR(50) NOT NULL
         );
         """;
 
-        String createTableGroup = """
-        CREATE TABLE IF NOT EXISTS ProductGroup (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL
+        String createTableProductGroup = """
+        CREATE TABLE IF NOT EXISTS product_group (
+        group_id INT AUTO_INCREMENT PRIMARY KEY,
+        group_name VARCHAR(100) NOT NULL
         );
         """;
 
         String createTableProduct = """
-        CREATE TABLE IF NOT EXISTS Product (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        reference VARCHAR(50) NOT NULL,
-        name VARCHAR(255) NOT NULL,
-        price DECIMAL(10, 2) NOT NULL,
-        quantity DECIMAL(10, 2) NOT NULL,
-        is_composite BOOLEAN NOT NULL,
-        group_id INT,
-        unit_id INT,
-        CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES ProductGroup(id),
-        CONSTRAINT fk_unit FOREIGN KEY (unit_id) REFERENCES ProductUnit(id)
+        CREATE TABLE IF NOT EXISTS product (
+        product_id INT AUTO_INCREMENT PRIMARY KEY,
+        product_reference VARCHAR(50) NOT NULL,
+        product_name VARCHAR(255) NOT NULL,
+        product_price DECIMAL(10, 2) NOT NULL,
+        product_quantity DECIMAL(10, 2) NOT NULL,
+        product_is_composite BOOLEAN NOT NULL,
+        product_group_id INT,
+        product_unit_id INT,
+        CONSTRAINT fk_group FOREIGN KEY (product_group_id) REFERENCES product_group(group_id),
+        CONSTRAINT fk_unit FOREIGN KEY (product_unit_id) REFERENCES product_unit(unit_id)
         );
         """;
 
-        String createTableComposition = """
-        CREATE TABLE IF NOT EXISTS ProductComposition (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        parent_product_id INT NOT NULL,
-        composition_product_id INT NOT NULL,
-        quantity_used DECIMAL(10, 2) NOT NULL,
-        CONSTRAINT fk_parent_product FOREIGN KEY (parent_product_id) REFERENCES Product(id),
-        CONSTRAINT fk_composition_product FOREIGN KEY (composition_product_id) REFERENCES Product(id)
+        String createTableProductComposition = """
+        CREATE TABLE IF NOT EXISTS product_composition (
+        product_composition_id INT AUTO_INCREMENT PRIMARY KEY,
+        product_composition_parent_product_id INT NOT NULL,
+        product_composition_child_product_id INT NOT NULL,
+        product_composition_quantity_used DECIMAL(10, 2) NOT NULL,
+        CONSTRAINT fk_parent_product FOREIGN KEY (product_composition_parent_product_id) REFERENCES product(product_id),
+        CONSTRAINT fk_child_product FOREIGN KEY (product_composition_child_product_id) REFERENCES product(product_id)
         );
         """;
 
         String createTableProductionOrder = """
-        CREATE TABLE IF NOT EXISTS ProductionOrder (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        recipient_id INT NOT NULL,
-        product_id INT NOT NULL,
-        quantity DECIMAL(10, 2) NOT NULL,
-        status VARCHAR(50) NOT NULL,
-        orderCost DECIMAL(10, 2) NOT NULL,
-        CONSTRAINT fk_recipient FOREIGN KEY (recipient_id) REFERENCES Registration(id),
-        CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES Product(id)
+        CREATE TABLE IF NOT EXISTS production_order (
+        production_order_id INT AUTO_INCREMENT PRIMARY KEY,
+        production_order_recipient_id INT NOT NULL,
+        production_order_product_id INT NOT NULL,
+        production_order_quantity DECIMAL(10, 2) NOT NULL,
+        production_order_status VARCHAR(50) NOT NULL,
+        production_order_order_cost DECIMAL(10, 2) NOT NULL,
+        CONSTRAINT fk_recipient FOREIGN KEY (production_order_recipient_id) REFERENCES registration(registration_id),
+        CONSTRAINT fk_product FOREIGN KEY (production_order_product_id) REFERENCES product(product_id)
         );
         """;
 
         String createTableProductionOrderComposition = """
-        CREATE TABLE IF NOT EXISTS ProductionOrderComposition (
-        production_order_id INT NOT NULL,
-        composition_id INT NOT NULL,
-        quantity_used DECIMAL(10, 2) NOT NULL,
-        CONSTRAINT fk_production_order FOREIGN KEY (production_order_id) REFERENCES ProductionOrder(id),
-        CONSTRAINT fk_composition FOREIGN KEY (composition_id) REFERENCES ProductComposition(id),
-        PRIMARY KEY (production_order_id, composition_id)
+        CREATE TABLE IF NOT EXISTS production_order_composition (
+        production_order_composition_production_order_id INT NOT NULL,
+        production_order_composition_product_composition_id INT NOT NULL,
+        production_order_composition_quantity_used DECIMAL(10, 2) NOT NULL,
+        CONSTRAINT fk_production_order FOREIGN KEY (production_order_composition_production_order_id) REFERENCES production_order(production_order_id),
+        CONSTRAINT fk_composition FOREIGN KEY (production_order_composition_product_composition_id) REFERENCES product_composition(product_composition_id),
+        PRIMARY KEY (production_order_composition_production_order_id, production_order_composition_product_composition_id)
         );
         """;
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(createTableAddress);
             statement.execute(createTableRegistration);
-            statement.execute(createTableUnit);
-            statement.execute(createTableGroup);
+            statement.execute(createTableProductUnit);
+            statement.execute(createTableProductGroup);
             statement.execute(createTableProduct);
-            statement.execute(createTableComposition);
+            statement.execute(createTableProductComposition);
             statement.execute(createTableProductionOrder);
             statement.execute(createTableProductionOrderComposition);
         } catch (SQLException e) {

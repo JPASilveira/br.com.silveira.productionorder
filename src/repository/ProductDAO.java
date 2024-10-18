@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ProductDAO {
-    public static void addProduct(Product product) {
+    /*public static void addProduct(Product product) {
         String sql = "INSERT INTO Product (Reference, Name, Price, Quantity, Is_Composite, Group_Id, Unit_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -148,5 +148,5 @@ public class ProductDAO {
         }catch (SQLException e){
             throw new ExceptionProductDAO("error while deleting product", e);
         }
-    }
+    }*/
 }

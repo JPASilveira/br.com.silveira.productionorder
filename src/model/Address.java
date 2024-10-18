@@ -1,60 +1,60 @@
 package model;
 
 public class Address {
-    private Integer id;
-    private String street;
-    private String number;
-    private String neighborhood;
-    private String city;
-    private String state;
+    private Integer addressId;
+    private String addressStreet;
+    private String addressNumber;
+    private String addressNeighborhood;
+    private String addressCity;
+    private String addressState;
 
     public Address(){}
 
-    public Integer getId() {
-        return id;
+    public Integer getAddressId() {
+        return addressId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 
-    public String getStreet() {
-        return street;
+    public String getAddressStreet() {
+        return addressStreet;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setAddressStreet(String addressStreet) {
+        this.addressStreet = addressStreet;
     }
 
-    public String getNumber() {
-        return number;
+    public String getAddressNumber() {
+        return addressNumber;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setAddressNumber(String addressNumber) {
+        this.addressNumber = addressNumber;
     }
 
-    public String getNeighborhood() {
-        return neighborhood;
+    public String getAddressNeighborhood() {
+        return addressNeighborhood;
     }
 
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
+    public void setAddressNeighborhood(String addressNeighborhood) {
+        this.addressNeighborhood = addressNeighborhood;
     }
 
-    public String getCity() {
-        return city;
+    public String getAddressCity() {
+        return addressCity;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddressCity(String addressCity) {
+        this.addressCity = addressCity;
     }
 
-    public String getState() {
-        return state;
+    public String getAddressState() {
+        return addressState;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setAddressState(String addressState) {
+        this.addressState = addressState;
     }
 }

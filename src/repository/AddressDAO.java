@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AddressDAO {
-    public static void addAddress(Address address) {
+    /*public static void addAddress(Address address) {
         String sql = "INSERT INTO RegistrationAddress (street, number, neighborhood, city, state) values(?,?,?,?,?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -120,5 +120,5 @@ public class AddressDAO {
         }catch (SQLException e){
             throw new ExceptionAddressDAO("error while deleting address", e);
         }
-    }
+    }*/
 }

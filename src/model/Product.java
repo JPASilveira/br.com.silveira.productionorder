@@ -1,81 +1,81 @@
 package model;
 
 public class Product {
-    private Integer id;
-    private String reference;
-    private String name;
-    private Double price;
-    private Double quantity;
-    private Boolean isComposite;
-    private Group group;
-    private Unit unit;
+    private Integer productId;
+    private String productReference;
+    private String productName;
+    private Double productPrice;
+    private Double productQuantity;
+    private Boolean productIsComposite;
+    private ProductGroup productGroup;
+    private ProductUnit productUnit;
 
     public Product() {}
 
-    public Integer getId() {
-        return id;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public String getReference() {
-        if(reference == null) {
+    public String getProductReference() {
+        if(productReference == null) {
             return "No reference";
         }
-        return reference;
+        return productReference;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setProductReference(String productReference) {
+        this.productReference = productReference;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setProductPrice(Double productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public Double getQuantity() {
-        return quantity;
+    public Double getProductQuantity() {
+        return productQuantity;
     }
 
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
+    public void setProductQuantity(Double productQuantity) {
+        this.productQuantity = productQuantity;
     }
 
-    public Boolean getIsComposite() {
-        return isComposite;
+    public Boolean getProductIsComposite() {
+        return productIsComposite;
     }
 
-    public void setComposite(Boolean composite) {
-        isComposite = composite;
+    public void setProductIsComposite(Boolean productIsComposite) {
+        this.productIsComposite = productIsComposite;
     }
 
-    public Group getGroup() {
-        return group;
+    public ProductGroup getProductGroup() {
+        return productGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setProductGroup(ProductGroup productGroup) {
+        this.productGroup = productGroup;
     }
 
-    public Unit getUnit() {
-        return unit;
+    public ProductUnit getProductUnit() {
+        return productUnit;
     }
 
-    public void setUnit(Unit unit) {
-        this.unit = unit;
+    public void setProductUnit(ProductUnit productUnit) {
+        this.productUnit = productUnit;
     }
 }

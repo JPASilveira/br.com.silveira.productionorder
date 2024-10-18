@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ProductCompositionDAO {
-    private static void addProductComposition(ProductComposition productComposition) {
+    /*private static void addProductComposition(ProductComposition productComposition) {
         String sql = "INSERT INTO ProductComposition (Parent_Product_ID, Composition_Product_ID, Quantity_Used) VALUES(?,?,?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -76,5 +76,5 @@ public class ProductCompositionDAO {
         }catch (SQLException e) {
             throw new ExceptionProductCompositionDAO("error while updating product composition", e);
         }
-    }
+    }*/
 }
