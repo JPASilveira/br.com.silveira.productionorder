@@ -41,4 +41,4 @@ O sistema utiliza um banco de dados H2 para armazenar as informações. As princ
 
 **Licença**
 
-CC BY-NC-SA
+ Production Order © 2024 by JPASilveira is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
