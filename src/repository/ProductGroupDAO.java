@@ -1,7 +1,7 @@
 package repository;
 
 import model.ProductGroup;
-import repository.exceptions.ExceptionGroupDAO;
+import repository.exceptions.ExceptionProductGroupDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ public class ProductGroupDAO {
             preparedStatement.setString(1, productGroup.getGroupName());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
-            throw new ExceptionGroupDAO("error while adding productGroup", e);
+            throw new ExceptionProductGroupDAO("error while adding productGroup", e);
         }
     }
 
@@ -29,7 +29,7 @@ public class ProductGroupDAO {
             preparedStatement.setInt(2, productGroup.getGroupId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
-            throw new ExceptionGroupDAO("error while updating productGroup", e);
+            throw new ExceptionProductGroupDAO("error while updating productGroup", e);
         }
     }
 
@@ -41,7 +41,7 @@ public class ProductGroupDAO {
             preparedStatement.setInt(1, productGroup.getGroupId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
-            throw new ExceptionGroupDAO("error while deleting productGroup", e);
+            throw new ExceptionProductGroupDAO("error while deleting productGroup", e);
         }
     }
 }

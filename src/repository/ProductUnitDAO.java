@@ -1,7 +1,7 @@
 package repository;
 
 import model.ProductUnit;
-import repository.exceptions.ExceptionUnitDAO;
+import repository.exceptions.ExceptionProductUnitDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ public class ProductUnitDAO {
             preparedStatement.setString(2, productUnit.getUnitAcronym());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
-            throw new ExceptionUnitDAO("error while adding productUnit", e);
+            throw new ExceptionProductUnitDAO("error while adding productUnit", e);
         }
     }
 
@@ -57,7 +57,7 @@ public class ProductUnitDAO {
             preparedStatement.setInt(parameterIndex++, productUnit.getUnitId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
-            throw new ExceptionUnitDAO("error while updating productUnit", e);
+            throw new ExceptionProductUnitDAO("error while updating productUnit", e);
         }
     }
 
@@ -69,7 +69,7 @@ public class ProductUnitDAO {
             preparedStatement.setInt(1, productUnit.getUnitId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new ExceptionUnitDAO("error while deleting productUnit", e);
+            throw new ExceptionProductUnitDAO("error while deleting productUnit", e);
         }
     }
 }

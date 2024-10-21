@@ -1,7 +1,7 @@
 package repository;
 
 import model.RegistrationAddress;
-import repository.exceptions.ExceptionAddressDAO;
+import repository.exceptions.ExceptionRegistrationAddressDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +21,7 @@ public class RegistrationAddressDAO {
 
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
-            throw new ExceptionAddressDAO("error while adding address", e);
+            throw new ExceptionRegistrationAddressDAO("error while adding address", e);
         }
     }
 
@@ -102,7 +102,7 @@ public class RegistrationAddressDAO {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new ExceptionAddressDAO("error while updating address", e);
+            throw new ExceptionRegistrationAddressDAO("error while updating address", e);
         }
     }
 
@@ -114,7 +114,7 @@ public class RegistrationAddressDAO {
             preparedStatement.setInt(1, registrationAddress.getAddressId());
             preparedStatement.executeUpdate();
         }catch (SQLException e){
-            throw new ExceptionAddressDAO("error while deleting address", e);
+            throw new ExceptionRegistrationAddressDAO("error while deleting address", e);
         }
     }
 }
