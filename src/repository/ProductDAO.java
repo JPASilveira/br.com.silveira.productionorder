@@ -8,18 +8,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ProductDAO {
-    /*public static void addProduct(Product product) {
-        String sql = "INSERT INTO Product (Reference, Name, Price, Quantity, Is_Composite, Group_Id, Unit_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static void addProduct(Product product) {
+        String sql = "INSERT INTO product (product_reference, product_name, product_price, product_quantity, product_is_composite, product_group_id, product_unit_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, product.getReference());
-            preparedStatement.setString(2, product.getName());
-            preparedStatement.setDouble(3, product.getPrice());
-            preparedStatement.setDouble(4, product.getQuantity());
-            preparedStatement.setBoolean(5, product.getIsComposite());
-            preparedStatement.setInt(6, product.getGroup().getId());
-            preparedStatement.setInt(7, product.getUnit().getId());
+            preparedStatement.setString(1, product.getProductReference());
+            preparedStatement.setString(2, product.getProductName());
+            preparedStatement.setDouble(3, product.getProductPrice());
+            preparedStatement.setDouble(4, product.getProductQuantity());
+            preparedStatement.setBoolean(5, product.getProductIsComposite());
+            preparedStatement.setInt(6, product.getProductGroup().getGroupId());
+            preparedStatement.setInt(7, product.getProductUnit().getUnitId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionProductDAO("error while adding product", e);
@@ -27,110 +27,110 @@ public class ProductDAO {
     }
 
     public static void updateProduct(Product product) {
-        StringBuilder sql = new StringBuilder("UPDATE Product SET ");
-        boolean hasReference = false;
-        boolean hasName = false;
-        boolean hasPrice = false;
-        boolean hasQuantity = false;
-        boolean hasComposite = false;
-        boolean hasGroupId = false;
-        boolean hasUnitId = false;
+        StringBuilder sql = new StringBuilder("UPDATE product SET ");
+        boolean hasProductReference = false;
+        boolean hasProductName = false;
+        boolean hasProductPrice = false;
+        boolean hasProductQuantity = false;
+        boolean hasProductComposite = false;
+        boolean hasProductGroupId = false;
+        boolean hasProductUnitId = false;
         boolean isFirst = true;
 
-        if (product.getReference() != null) {
-            sql.append("Reference = ?");
-            hasReference = true;
+        if (product.getProductReference() != null) {
+            sql.append("product_reference = ?");
+            hasProductReference = true;
             isFirst = false;
         }
 
-        if (product.getName() != null) {
+        if (product.getProductName() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("Name = ?");
-            hasName = true;
+            sql.append("product_name = ?");
+            hasProductName = true;
             isFirst = false;
         }
 
-        if (product.getPrice() != null) {
+        if (product.getProductPrice() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("Price = ?");
-            hasPrice = true;
+            sql.append("product_price = ?");
+            hasProductPrice = true;
             isFirst = false;
         }
 
-        if (product.getQuantity() != null) {
+        if (product.getProductQuantity() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("Quantity = ?");
-            hasQuantity = true;
+            sql.append("product_quantity = ?");
+            hasProductQuantity = true;
             isFirst = false;
         }
 
-        if (product.getIsComposite() != null) {
+        if (product.getProductIsComposite() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("IsComposite = ?");
-            hasComposite = true;
+            sql.append("product_is_composite = ?");
+            hasProductComposite = true;
             isFirst = false;
         }
 
-        if (product.getGroup().getId() != null) {
+        if (product.getProductGroup().getGroupId() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("Group_Id = ?");
-            hasGroupId = true;
+            sql.append("product_group_id = ?");
+            hasProductGroupId = true;
             isFirst = false;
         }
 
-        if (product.getUnit().getId() != null) {
+        if (product.getProductUnit().getUnitId() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("Unit_Id = ?");
-            hasUnitId = true;
+            sql.append("product_unit_id = ?");
+            hasProductUnitId = true;
         }
 
-        sql.append(" WHERE id = ?");
+        sql.append(" WHERE product_id = ?");
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())){
             int parameterIndex = 1;
 
-            if (hasReference) {
-                preparedStatement.setString(parameterIndex++, product.getReference());
+            if (hasProductReference) {
+                preparedStatement.setString(parameterIndex++, product.getProductReference());
             }
 
-            if (hasName) {
-                preparedStatement.setString(parameterIndex++, product.getName());
+            if (hasProductName) {
+                preparedStatement.setString(parameterIndex++, product.getProductName());
             }
 
-            if (hasPrice) {
-                preparedStatement.setDouble(parameterIndex++, product.getPrice());
+            if (hasProductPrice) {
+                preparedStatement.setDouble(parameterIndex++, product.getProductPrice());
             }
 
-            if (hasQuantity) {
-                preparedStatement.setDouble(parameterIndex++, product.getQuantity());
+            if (hasProductQuantity) {
+                preparedStatement.setDouble(parameterIndex++, product.getProductQuantity());
             }
 
-            if (hasComposite) {
-                preparedStatement.setBoolean(parameterIndex++, product.getIsComposite());
+            if (hasProductComposite) {
+                preparedStatement.setBoolean(parameterIndex++, product.getProductIsComposite());
             }
 
-            if (hasGroupId) {
-                preparedStatement.setInt(parameterIndex++, product.getGroup().getId());
+            if (hasProductGroupId) {
+                preparedStatement.setInt(parameterIndex++, product.getProductGroup().getGroupId());
             }
 
-            if (hasUnitId) {
-                preparedStatement.setInt(parameterIndex++, product.getUnit().getId());
+            if (hasProductUnitId) {
+                preparedStatement.setInt(parameterIndex++, product.getProductUnit().getUnitId());
             }
 
-            preparedStatement.setInt(parameterIndex++, product.getId());
+            preparedStatement.setInt(parameterIndex++, product.getProductId());
 
             preparedStatement.executeUpdate();
         }catch (SQLException e){
@@ -139,14 +139,14 @@ public class ProductDAO {
     }
 
     public static void deleteProduct(Product product) {
-        String sql = "DELETE FROM Product WHERE id = ?";
+        String sql = "DELETE FROM product WHERE product_id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, product.getId());
+            preparedStatement.setInt(1, product.getProductId());
             preparedStatement.executeUpdate();
         }catch (SQLException e){
             throw new ExceptionProductDAO("error while deleting product", e);
         }
-    }*/
+    }
 }

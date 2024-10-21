@@ -19,8 +19,11 @@ public class Registration {
         this.registrationId = registrationId;
     }
 
-    public EnumRegistration getRegistrationType() {
-        return registrationType;
+    public String getRegistrationType() {
+        if(this.registrationType == null){
+            return null;
+        }
+        return this.registrationType.name();
     }
 
     public void setRegistrationType(EnumRegistration registrationType) {

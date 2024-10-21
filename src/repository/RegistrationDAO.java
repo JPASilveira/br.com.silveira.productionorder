@@ -8,15 +8,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RegistrationDAO {
-    /*public static void registrationAdd(Registration registration) {
-        String sql = "INSERT INTO Registration (RegistrationType, Name, Document, Address_ID) values(?,?,?,?)";
+    public static void registrationAdd(Registration registration) {
+        String sql = "INSERT INTO registration (registration_type, registration_name, registration_document, registration_address_ID) values(?,?,?,?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, registration.getRegistrationType());
-            preparedStatement.setString(2, registration.getName());
-            preparedStatement.setString(3, registration.getDocument());
-            preparedStatement.setInt(4, registration.getAddress().getId());
+            preparedStatement.setString(2, registration.getRegistrationName());
+            preparedStatement.setString(3, registration.getRegistrationDocument());
+            preparedStatement.setInt(4,registration.getRegistrationAddress().getAddressId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionRegistrationDAO("error while adding registration", e);
@@ -24,46 +24,46 @@ public class RegistrationDAO {
     }
 
     public static void registrationUpdate(Registration registration) {
-        StringBuilder sql = new StringBuilder("UPDATE Registration SET ");
+        StringBuilder sql = new StringBuilder("UPDATE registration SET ");
         boolean hasRegistrationType = false;
-        boolean hasName = false;
-        boolean hasDocument = false;
-        boolean hasAddressId = false;
+        boolean hasRegistrationName = false;
+        boolean hasRegistrationDocument = false;
+        boolean hasRegistrationAddressId = false;
         boolean isFirst = true;
 
         if (registration.getRegistrationType() != null) {
-            sql.append("RegistrationType = ?");
+            sql.append("registration_type = ?");
             hasRegistrationType = true;
             isFirst = false;
         }
 
-        if (registration.getName() != null) {
+        if (registration.getRegistrationName() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("Name = ?");
-            hasName = true;
+            sql.append("registration_name = ?");
+            hasRegistrationName = true;
             isFirst = false;
         }
 
-        if (registration.getDocument() != null) {
+        if (registration.getRegistrationDocument() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("Document = ?");
-            hasDocument = true;
+            sql.append("registration_document = ?");
+            hasRegistrationDocument = true;
             isFirst = false;
         }
 
-        if (registration.getAddress().getId() != null) {
+        if (registration.getRegistrationAddress().getAddressId() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
-            sql.append("Address_ID = ?");
-            hasAddressId = true;
+            sql.append("registration_address_ID = ?");
+            hasRegistrationAddressId = true;
         }
 
-        sql.append(" WHERE id = ?");
+        sql.append(" WHERE registration_id = ?");
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())){
@@ -73,19 +73,19 @@ public class RegistrationDAO {
                 preparedStatement.setString(parameterIndex++, registration.getRegistrationType());
             }
 
-            if (hasName) {
-                preparedStatement.setString(parameterIndex++, registration.getName());
+            if (hasRegistrationName) {
+                preparedStatement.setString(parameterIndex++, registration.getRegistrationName());
             }
 
-            if (hasDocument) {
-                preparedStatement.setString(parameterIndex, registration.getDocument());
+            if (hasRegistrationDocument) {
+                preparedStatement.setString(parameterIndex, registration.getRegistrationDocument());
             }
 
-            if (hasAddressId) {
-                preparedStatement.setInt(parameterIndex++, registration.getAddress().getId());
+            if (hasRegistrationAddressId) {
+                preparedStatement.setInt(parameterIndex++, registration.getRegistrationAddress().getAddressId());
             }
 
-            preparedStatement.setInt(parameterIndex++, registration.getId());
+            preparedStatement.setInt(parameterIndex++, registration.getRegistrationId());
 
             preparedStatement.executeUpdate();
         }catch (SQLException e){
@@ -94,13 +94,13 @@ public class RegistrationDAO {
     }
 
     public static void RegistrationDelete(Registration registration) {
-        String sql = "DELETE FROM Registration WHERE id = ?";
+        String sql = "DELETE FROM Registration WHERE registration_id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1, registration.getId());
+            preparedStatement.setInt(1, registration.getRegistrationId());
         } catch (SQLException e) {
             throw new ExceptionRegistrationDAO("error while deleting registration", e);
         }
-    }*/
+    }
 }
