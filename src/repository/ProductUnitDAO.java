@@ -1,14 +1,18 @@
 package repository;
 
 import model.ProductUnit;
+import org.jetbrains.annotations.NotNull;
 import repository.exceptions.ExceptionProductUnitDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class ProductUnitDAO {
-    public static void addUnit(ProductUnit productUnit) {
+    public static void addUnit(@NotNull ProductUnit productUnit) {
         String sql = "INSERT INTO product_unit (unit_name, unit_acronym) VALUES (?, ?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -21,7 +25,7 @@ public class ProductUnitDAO {
         }
     }
 
-    public static void updateUnit(ProductUnit productUnit) {
+    public static void updateUnit(@NotNull ProductUnit productUnit) {
         StringBuilder sql = new StringBuilder("UPDATE product_unit SET ");
         boolean hasUnitName = false;
         boolean hasUnitAcronym = false;
@@ -61,7 +65,7 @@ public class ProductUnitDAO {
         }
     }
 
-    public static void deleteUnit(ProductUnit productUnit) {
+    public static void deleteUnit(@NotNull ProductUnit productUnit) {
         String sql = "DELETE FROM product_unit WHERE unit_id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -71,5 +75,70 @@ public class ProductUnitDAO {
         } catch (SQLException e) {
             throw new ExceptionProductUnitDAO("error while deleting productUnit", e);
         }
+    }
+
+    public static Optional<ArrayList<ProductUnit>> getProductUnitById(Integer productUnitId) {
+        String sql = "SELECT * FROM product_unit WHERE unit_id = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery()){
+            preparedStatement.setInt(1,productUnitId);
+            return getProductUnits(resultSet);
+        } catch (SQLException e) {
+            throw new ExceptionProductUnitDAO("error while getting product units", e);
+        }
+    }
+
+    public static Optional<ArrayList<ProductUnit>> getProductUnitByName(String productUnitName) {
+        String sql = "SELECT * FROM product_unit WHERE unit_name = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()){
+                preparedStatement.setString(1, productUnitName);
+                return getProductUnits(resultSet);
+        }catch (SQLException e) {
+            throw new ExceptionProductUnitDAO("error while getting product units", e);
+        }
+    }
+
+    public static Optional<ArrayList<ProductUnit>> getProductUnitsByAcronym(String unitAcronym) {
+        String sql = "SELECT * FROM product_unit WHERE unit_acronym = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()){
+                preparedStatement.setString(1, unitAcronym);
+                return getProductUnits(resultSet);
+        }catch (SQLException e) {
+            throw new ExceptionProductUnitDAO("error while getting productUnits", e);
+        }
+    }
+
+    public static Optional<ArrayList<ProductUnit>> getAllProductUnits() {
+        String sql = "SELECT * FROM product_unit";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery()){
+            return getProductUnits(resultSet);
+        }catch (SQLException e) {
+            throw new ExceptionProductUnitDAO("error while getting product units", e);
+        }
+    }
+
+    @NotNull
+    public static Optional<ArrayList<ProductUnit>> getProductUnits(@NotNull ResultSet resultSet) throws SQLException {
+        ArrayList<ProductUnit> productUnits = new ArrayList<>();
+        while (resultSet.next()) {
+            ProductUnit productUnit = new ProductUnit();
+            productUnit.setUnitId(resultSet.getInt("unit_id"));
+            productUnit.setUnitName(resultSet.getString("unit_name"));
+            productUnit.setUnitAcronym(resultSet.getString("unit_acronym"));
+            productUnits.add(productUnit);
+        }
+
+        return productUnits.isEmpty() ? Optional.empty() : Optional.of(productUnits);
     }
 }

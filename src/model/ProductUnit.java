@@ -32,7 +32,7 @@ public class ProductUnit {
         return unitAcronym.name();
     }
 
-    public void setUnitAcronym(EnumUnit unitAcronym) {
-        this.unitAcronym = unitAcronym;
+    public void setUnitAcronym(String unitAcronym) {
+        this.unitAcronym = EnumUnit.valueOf(unitAcronym);
     }
 }
