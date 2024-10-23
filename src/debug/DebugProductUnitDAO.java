@@ -2,15 +2,14 @@ package debug;
 
 import model.ProductUnit;
 import model.enums.EnumUnit;
-import repository.ProductGroupDAO;
 import repository.ProductUnitDAO;
 
-public class DebugUnitDAO {
+public class DebugProductUnitDAO {
     public static void testUnit(String operation){
         ProductUnit productUnit = new ProductUnit();
         productUnit.setUnitId(1);
         productUnit.setUnitName("Kilogram2");
-        productUnit.setUnitAcronym(EnumUnit.UN);
+        productUnit.setUnitAcronym("KG");
 
         switch(operation){
             case "add":

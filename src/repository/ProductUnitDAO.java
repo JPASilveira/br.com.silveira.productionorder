@@ -77,52 +77,58 @@ public class ProductUnitDAO {
         }
     }
 
-    public static Optional<ArrayList<ProductUnit>> getProductUnitById(Integer productUnitId) {
+    public static @NotNull Optional<ArrayList<ProductUnit>> getProductUnitById(Integer productUnitId) {
         String sql = "SELECT * FROM product_unit WHERE unit_id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ResultSet resultSet = preparedStatement.executeQuery()){
-            preparedStatement.setInt(1,productUnitId);
-            return getProductUnits(resultSet);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, productUnitId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getProductUnits(resultSet);
+            }
         } catch (SQLException e) {
             throw new ExceptionProductUnitDAO("error while getting product units", e);
         }
     }
 
-    public static Optional<ArrayList<ProductUnit>> getProductUnitByName(String productUnitName) {
-        String sql = "SELECT * FROM product_unit WHERE unit_name = ?";
+    public static @NotNull Optional<ArrayList<ProductUnit>> getProductUnitByName(String productUnitName) {
+        String sql = "SELECT * FROM product_unit WHERE unit_name LIKE ?";
+        productUnitName = "%" + productUnitName + "%";
 
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()){
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
                 preparedStatement.setString(1, productUnitName);
-                return getProductUnits(resultSet);
+                try (ResultSet resultSet = preparedStatement.executeQuery()){
+                    return getProductUnits(resultSet);
+                }
         }catch (SQLException e) {
             throw new ExceptionProductUnitDAO("error while getting product units", e);
         }
     }
 
-    public static Optional<ArrayList<ProductUnit>> getProductUnitsByAcronym(String unitAcronym) {
-        String sql = "SELECT * FROM product_unit WHERE unit_acronym = ?";
+    public static @NotNull Optional<ArrayList<ProductUnit>> getProductUnitsByAcronym(String unitAcronym) {
+        String sql = "SELECT * FROM product_unit WHERE unit_acronym LIKE ?";
+        unitAcronym = "%" + unitAcronym + "%";
 
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()){
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
                 preparedStatement.setString(1, unitAcronym);
-                return getProductUnits(resultSet);
+                try (ResultSet resultSet = preparedStatement.executeQuery()){
+                    return getProductUnits(resultSet);
+                }
         }catch (SQLException e) {
             throw new ExceptionProductUnitDAO("error while getting productUnits", e);
         }
     }
 
-    public static Optional<ArrayList<ProductUnit>> getAllProductUnits() {
+    public static @NotNull Optional<ArrayList<ProductUnit>> getAllProductUnits() {
         String sql = "SELECT * FROM product_unit";
 
         try (Connection connection = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ResultSet resultSet = preparedStatement.executeQuery()){
-            return getProductUnits(resultSet);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getProductUnits(resultSet);
+            }
         }catch (SQLException e) {
             throw new ExceptionProductUnitDAO("error while getting product units", e);
         }

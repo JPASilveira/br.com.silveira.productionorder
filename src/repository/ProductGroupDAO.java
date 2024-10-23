@@ -49,48 +49,44 @@ public class ProductGroupDAO {
         }
     }
 
-    public static Optional<ProductGroup> getProductGroupById(Integer productGroupId) {
+    public static @NotNull Optional<ArrayList<ProductGroup>> getProductGroupById(Integer productGroupId) {
         String sql = "SELECT * FROM product_group WHERE group_id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, productGroupId);
-
-            if (resultSet.next()) {
-                ProductGroup productGroup = new ProductGroup();
-                productGroup.setGroupId(resultSet.getInt("group_id"));
-                productGroup.setGroupName(resultSet.getString("group_name"));
-                return Optional.of(productGroup);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                return getProductGroups(resultSet);
             }
-        } catch (SQLException e) {
-            throw new ExceptionProductGroupDAO("error while getting product group", e);
-        }
-        return Optional.empty();
-    }
-
-    public static Optional<ArrayList<ProductGroup>> getProductGroupByName(String groupName) {
-        String sql = "SELECT * FROM product_group WHERE group_name = ?";
-
-        try (Connection connection = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ResultSet resultSet = preparedStatement.executeQuery()){
-
-            return getProductGroups(resultSet);
         }catch (SQLException e) {
             throw new ExceptionProductGroupDAO("error while getting product group", e);
         }
     }
 
-    public static Optional<ArrayList<ProductGroup>> getAllProductGroups() {
+
+    public static @NotNull Optional<ArrayList<ProductGroup>> getProductGroupByName(String productGroupName) {
+        String sql = "SELECT * FROM product_group WHERE group_name LIKE ?";
+        productGroupName = "%" + productGroupName + "%";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, productGroupName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                return getProductGroups(resultSet);
+            }
+        }catch (SQLException e) {
+            throw new ExceptionProductGroupDAO("error while getting product group", e);
+        }
+    }
+
+    public static @NotNull Optional<ArrayList<ProductGroup>> getAllProductGroups() {
         String sql = "SELECT * FROM product_group";
 
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-
-            return getProductGroups(resultSet);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                return getProductGroups(resultSet);
+            }
         } catch (SQLException e) {
             throw new ExceptionProductGroupDAO("error while getting all product groups", e);
         }

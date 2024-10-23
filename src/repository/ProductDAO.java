@@ -1,18 +1,26 @@
 package repository;
 
 import model.Product;
+import model.ProductGroup;
+import model.ProductUnit;
+import org.jetbrains.annotations.NotNull;
 import repository.exceptions.ExceptionProductDAO;
+import repository.exceptions.ExceptionProductGroupDAO;
+import repository.exceptions.ExceptionProductUnitDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class ProductDAO {
-    public static void addProduct(Product product) {
+    public static void addProduct(@NotNull Product product) {
         String sql = "INSERT INTO product (product_reference, product_name, product_price, product_quantity, product_is_composite, product_group_id, product_unit_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, product.getProductReference());
             preparedStatement.setString(2, product.getProductName());
             preparedStatement.setDouble(3, product.getProductPrice());
@@ -21,12 +29,12 @@ public class ProductDAO {
             preparedStatement.setInt(6, product.getProductGroup().getGroupId());
             preparedStatement.setInt(7, product.getProductUnit().getUnitId());
             preparedStatement.executeUpdate();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new ExceptionProductDAO("error while adding product", e);
         }
     }
 
-    public static void updateProduct(Product product) {
+    public static void updateProduct(@NotNull Product product) {
         StringBuilder sql = new StringBuilder("UPDATE product SET ");
         boolean hasProductReference = false;
         boolean hasProductName = false;
@@ -99,7 +107,7 @@ public class ProductDAO {
         sql.append(" WHERE product_id = ?");
 
         try (Connection connection = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())){
+             PreparedStatement preparedStatement = connection.prepareStatement(sql.toString())) {
             int parameterIndex = 1;
 
             if (hasProductReference) {
@@ -133,20 +141,114 @@ public class ProductDAO {
             preparedStatement.setInt(parameterIndex++, product.getProductId());
 
             preparedStatement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new ExceptionProductDAO("error while updating product", e);
         }
     }
 
-    public static void deleteProduct(Product product) {
+    public static void deleteProduct(@NotNull Product product) {
         String sql = "DELETE FROM product WHERE product_id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, product.getProductId());
             preparedStatement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new ExceptionProductDAO("error while deleting product", e);
+        }
+    }
+
+    public static @NotNull Optional<ArrayList<Product>> getProductById(Integer productId) {
+        String sql = "SELECT * FROM product WHERE product_id = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, productId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getAllProducts(resultSet);
+            }
+        }catch (SQLException e) {
+            throw new ExceptionProductDAO("error while retrieving product", e);
+        }
+    }
+
+    public static @NotNull Optional<ArrayList<Product>> getProductByReference(String productReference){
+        String sql = "SELECT * FROM product WHERE product_reference = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, productReference);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getAllProducts(resultSet);
+            }
+        }catch (SQLException e) {
+            throw new ExceptionProductDAO("error while retrieving product", e);
+        }
+    }
+
+    public static @NotNull Optional<ArrayList<Product>> getProductByName(String productName){
+        String sql = "SELECT * FROM product WHERE product_name = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, productName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getAllProducts(resultSet);
+            }
+        }catch (SQLException e) {
+            throw new ExceptionProductDAO("error while retrieving product", e);
+        }
+    }
+
+    public static @NotNull Optional<ArrayList<Product>> getProductByPrice(Double productPrice){
+        String sql = "SELECT * FROM product WHERE product_price = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setDouble(1, productPrice);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getAllProducts(resultSet);
+            }
+        }catch (SQLException e) {
+            throw new ExceptionProductDAO("error while retrieving product", e);
+        }
+    }
+
+    @NotNull
+    public static Optional<ArrayList<Product>> getAllProducts(@NotNull ResultSet resultSet) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                Product product = new Product();
+                Optional<ArrayList<ProductGroup>> productGroup = ProductGroupDAO.getProductGroupById(resultSet.getInt("product_group_id"));
+                Optional<ArrayList<ProductUnit>> productUnit = ProductUnitDAO.getProductUnitById(resultSet.getInt("product_unit_id"));
+
+                product.setProductId(resultSet.getInt("product_id"));
+                product.setProductReference(resultSet.getString("product_reference"));
+                product.setProductName(resultSet.getString("product_name"));
+                product.setProductPrice(resultSet.getDouble("product_price"));
+                product.setProductQuantity(resultSet.getDouble("product_quantity"));
+                product.setProductIsComposite(resultSet.getBoolean("product_is_compose"));
+
+                if (productGroup.isPresent() && !productGroup.get().isEmpty()) {
+                    product.setProductGroup(productGroup.get().getFirst());
+                } else {
+                    throw new ExceptionProductGroupDAO("not found group", null);
+                }
+
+                if (productUnit.isPresent() && !productUnit.get().isEmpty()) {
+                    product.setProductUnit(productUnit.get().getFirst());
+                } else {
+                    throw new ExceptionProductUnitDAO("not found product unit", null);
+                }
+
+                products.add(product);
+            }
+
+            return products.isEmpty() ? Optional.empty() : Optional.of(products);
+
+        } catch (SQLException e) {
+            throw new ExceptionProductDAO("error while getting product", e);
         }
     }
 }
