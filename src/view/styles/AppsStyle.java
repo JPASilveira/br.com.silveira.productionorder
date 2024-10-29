@@ -41,6 +41,22 @@ public class AppsStyle {
         return button;
     }
 
+    public static JPanel defaultSaveDeleteReturn(){
+        JPanel panel = new JPanel();
+        panel.setBackground(AppsStyle.backgroundColor);
+        panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+        JButton btnSave = defaultButton("Salvar");
+        JButton btnDelete = defaultButton("Excluir");
+        JButton btnReturn = defaultButton("Voltar");
+
+        panel.add(btnDelete);
+        panel.add(btnReturn);
+        panel.add(btnSave);
+
+        return panel;
+    }
+
     public static final Font regularFont = FontLoader.loadFontRegular();
     public static final Font boldFont = FontLoader.loadFontBold();
 }
