@@ -9,14 +9,15 @@ import java.sql.SQLException;
 
 public class RegistrationDAO {
     public static void registrationAdd(Registration registration) {
-        String sql = "INSERT INTO registration (registration_type, registration_name, registration_document, registration_address_ID) values(?,?,?,?)";
+        String sql = "INSERT INTO registration (registration_type, registration_name, registration_document, registration_contact_number, registration_address_ID) values(?,?,?,?,?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, registration.getRegistrationType());
             preparedStatement.setString(2, registration.getRegistrationName());
             preparedStatement.setString(3, registration.getRegistrationDocument());
-            preparedStatement.setInt(4,registration.getRegistrationAddress().getAddressId());
+            preparedStatement.setString(4, registration.getRegistrationContactNumber());
+            preparedStatement.setInt(5,registration.getRegistrationAddress().getAddressId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionRegistrationDAO("error while adding registration", e);
@@ -28,6 +29,7 @@ public class RegistrationDAO {
         boolean hasRegistrationType = false;
         boolean hasRegistrationName = false;
         boolean hasRegistrationDocument = false;
+        boolean hasRegistrationContactNumber = false;
         boolean hasRegistrationAddressId = false;
         boolean isFirst = true;
 
@@ -52,6 +54,15 @@ public class RegistrationDAO {
             }
             sql.append("registration_document = ?");
             hasRegistrationDocument = true;
+            isFirst = false;
+        }
+
+        if (registration.getRegistrationContactNumber() != null) {
+            if (!isFirst) {
+                sql.append(", ");
+            }
+            sql.append("registration_contact_number = ?");
+            hasRegistrationContactNumber = true;
             isFirst = false;
         }
 

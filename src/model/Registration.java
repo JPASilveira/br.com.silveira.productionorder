@@ -7,6 +7,8 @@ public class Registration {
     private EnumRegistration registrationType;
     private String registrationName;
     private String registrationDocument;
+    private String registrationContactNumber;
+
     private RegistrationAddress registrationAddress;
 
     public Registration() {}
@@ -44,6 +46,14 @@ public class Registration {
 
     public void setRegistrationDocument(String registrationDocument) {
         this.registrationDocument = registrationDocument;
+    }
+
+    public String getRegistrationContactNumber() {
+        return registrationContactNumber;
+    }
+
+    public void setRegistrationContactNumber(String registrationContactNumber) {
+        this.registrationContactNumber = registrationContactNumber;
     }
 
     public RegistrationAddress getRegistrationAddress() {

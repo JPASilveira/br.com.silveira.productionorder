@@ -39,6 +39,7 @@ public class ConnectionFactory {
         registration_type VARCHAR(50) NOT NULL,
         registration_name VARCHAR(255) NOT NULL,
         registration_document VARCHAR(100) NOT NULL,
+        registration_contact_number VARCHAR(100) NOT NULL,
         registration_address_id INT,
         CONSTRAINT fk_registration_address FOREIGN KEY (registration_address_id) REFERENCES registration_address(address_id)
         );

@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 
-public class ProductTableView extends JFrame {
+public class RegistrationTableView extends JFrame {
     private JPanel pnlMain;
     private JPanel pnlTop;
     private JComboBox<String> cmbFilter;
@@ -21,13 +21,13 @@ public class ProductTableView extends JFrame {
     private JButton btnDelete;
     private JButton btnSearch;
 
-    String[] columnNames = {"ID", "REFERÊNCIA", "NOME", "PREÇO", "QUANTIDADE", "COMPOSTO", "GRUPO", "UN"};
+    String[] columnNames = {"ID", "TIPO", "NOME", "DOCUMENTO"};
     Object[][] data = {
             {1, "COCA COLA", 10.00, "78766897687"},
             {2, "PEPSI", 8.00, "78766897688"}
     };
 
-    public ProductTableView() {
+    public RegistrationTableView() {
         setTitle("PRODUTOS");
         setContentPane(pnlMain);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -49,8 +49,6 @@ public class ProductTableView extends JFrame {
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         tbeItens.setModel(model);
-
-        btnAdd.addActionListener(e -> SwingUtilities.invokeLater(ProductView::new));
     }
 
     private void createUIComponents() {

@@ -4,6 +4,7 @@ import util.ResolutionCapture;
 import view.styles.AppsStyle;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,60 +23,57 @@ public class MainWindowView extends JFrame {
     private JButton btnStart;
 
     public MainWindowView() {
+        JPanel pnlEmpty = new JPanel();
+
         setTitle("Ordem de Produção");
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(resolutionCapture.getWidth(), resolutionCapture.getHeight());
         setLocationRelativeTo(null);
 
-        //Styles
-        pnlLeft.setBackground(AppsStyle.backgroundColor);
-        pnlCenter.setBackground(AppsStyle.backgroundColor);
+        CardLayout cardLayout = new CardLayout();
+        pnlCenter.setLayout(cardLayout);
 
-        btnProduct.setBackground(AppsStyle.btnColor);
-        btnProduct.setForeground(AppsStyle.textColor);
-        btnProduct.setFont(AppsStyle.boldFont);
+        AppsStyle.stylePanel(pnlLeft);
+        AppsStyle.stylePanel(pnlCenter);
+        AppsStyle.stylePanel(pnlEmpty);
+        AppsStyle.styleButton(btnProduct);
+        AppsStyle.styleButton(btnRegister);
+        AppsStyle.styleButton(btnProduction);
+        AppsStyle.styleButton(btnStart);
+        AppsStyle.styleButton(btnContact);
 
-        btnRegister.setBackground(AppsStyle.btnColor);
-        btnRegister.setForeground(AppsStyle.textColor);
-        btnRegister.setFont(AppsStyle.boldFont);
+        pnlCenter.add(pnlEmpty, "Empty");
+        pnlCenter.add(new ProductTableView().getPnlMain(), "Product");
+        pnlCenter.add(new RegistrationTableView().getPnlMain(), "Registration");
+        pnlCenter.add(new ProductionTableView().getPnlMain(), "Production");
 
-        btnProduction.setBackground(AppsStyle.btnColor);
-        btnProduction.setForeground(AppsStyle.textColor);
-        btnProduct.setFont(AppsStyle.boldFont);
-
-        btnStart.setBackground(AppsStyle.btnColor);
-        btnStart.setForeground(AppsStyle.textColor);
-        btnStart.setFont(AppsStyle.boldFont);
-
-        btnContact.setBackground(AppsStyle.btnColor);
-        btnContact.setForeground(AppsStyle.textColor);
-        btnContact.setFont(AppsStyle.boldFont);
+        cardLayout.show(pnlCenter, "Empty");
 
         setVisible(true);
 
-        btnProduct.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pnlCenter.removeAll();
-                openProductGroupView();
-            }
-        });
-
-        btnStart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pnlCenter.removeAll();
-                pnlCenter.repaint();
-            }
-        });
+        btnProduct.addActionListener(e -> cardLayout.show(pnlCenter, "Product"));
+        btnRegister.addActionListener(e -> cardLayout.show(pnlCenter, "Registration"));
+        btnProduction.addActionListener(e -> cardLayout.show(pnlCenter, "Production"));
+        btnStart.addActionListener(e -> cardLayout.show(pnlCenter, "Empty"));
     }
 
-    private void openProductGroupView(){
+    private void openProductTableView(){
         ProductTableView productTableView = new ProductTableView();
         pnlCenter.add(productTableView.getPnlMain(), "Center");
         pnlCenter.revalidate();
-        pnlCenter.repaint();
+    }
+
+    private void openRegistrationTableView(){
+        RegistrationTableView registrationTableView = new RegistrationTableView();
+        pnlCenter.add(registrationTableView.getPnlMain(), "Center");
+        pnlCenter.revalidate();
+    }
+
+    private void openProductionTableView(){
+        ProductionTableView productionTableView = new ProductionTableView();
+        pnlCenter.add(productionTableView.getPnlMain(), "Center");
+        pnlCenter.revalidate();
     }
 
     public static void main(String[] args) {
