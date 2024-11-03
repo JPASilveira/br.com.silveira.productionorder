@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.ProductTableView">
+  <grid id="27dc6" binding="pnlMain" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="line"/>
+    <children>
+      <grid id="f6872" binding="pnlTop" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <component id="1d247" class="javax.swing.JComboBox" binding="cmbFilter">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <alignmentY value="0.5"/>
+              <model>
+                <item value="ID"/>
+                <item value="NOME"/>
+                <item value="PREÇO"/>
+                <item value="REFERÊNCIA"/>
+              </model>
+            </properties>
+          </component>
+          <component id="7cf25" class="javax.swing.JTextField" binding="txtSearch">
+            <constraints/>
+            <properties>
+              <preferredSize width="200" height="24"/>
+            </properties>
+          </component>
+          <component id="22d52" class="javax.swing.JButton" binding="btnSearch">
+            <constraints/>
+            <properties>
+              <text value="Pesquisar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <scrollpane id="42c92" binding="scpCenter" custom-create="true">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="120ad" class="javax.swing.JTable" binding="tbeItens">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <grid id="8c47e" binding="pnlLow" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <component id="e62e6" class="javax.swing.JButton" binding="btnDelete">
+            <constraints/>
+            <properties>
+              <text value="Deletar"/>
+            </properties>
+          </component>
+          <component id="c730f" class="javax.swing.JButton" binding="btnEdit">
+            <constraints/>
+            <properties>
+              <text value="Editar"/>
+            </properties>
+          </component>
+          <component id="112df" class="javax.swing.JButton" binding="btnAdd">
+            <constraints/>
+            <properties>
+              <text value="Adicionar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

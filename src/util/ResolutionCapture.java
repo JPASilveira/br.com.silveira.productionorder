@@ -11,7 +11,7 @@ public class ResolutionCapture {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
         this.width = screenSize.width;
-        this.height= screenSize.height;
+        this.height = screenSize.height;
     }
 
     public int getWidth() {

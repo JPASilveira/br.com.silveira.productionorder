@@ -7,7 +7,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="158b" binding="pnlTitle" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+      <grid id="158b" binding="pnlTitle" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
         <constraints border-constraint="North"/>
         <properties/>
         <border type="none"/>
@@ -15,7 +15,11 @@
           <component id="3aa86" class="javax.swing.JLabel" binding="lblId">
             <constraints/>
             <properties>
+              <horizontalTextPosition value="10"/>
               <text value="ID: "/>
+              <verifyInputWhenFocusTarget value="false"/>
+              <verticalAlignment value="1"/>
+              <verticalTextPosition value="0"/>
             </properties>
           </component>
         </children>
@@ -25,16 +29,16 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="c935" class="javax.swing.JButton" binding="bntSave">
+          <component id="a7d9" class="javax.swing.JButton" binding="btnSave">
             <constraints/>
             <properties>
               <text value="Salvar"/>
             </properties>
           </component>
-          <component id="5c7bb" class="javax.swing.JButton" binding="bntReturn">
+          <component id="e67b2" class="javax.swing.JButton" binding="btnReturn">
             <constraints/>
             <properties>
-              <text value="Retornar"/>
+              <text value="Retomar"/>
             </properties>
           </component>
         </children>
