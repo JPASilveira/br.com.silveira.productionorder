@@ -57,7 +57,7 @@
             <constraints/>
             <properties>
               <preferredSize width="89" height="30"/>
-              <text value="Remover"/>
+              <text value="Deletar"/>
             </properties>
           </component>
           <component id="6e2af" class="javax.swing.JButton" binding="btnEdit">

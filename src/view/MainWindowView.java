@@ -10,7 +10,10 @@ import java.awt.event.ActionListener;
 
 public class MainWindowView extends JFrame {
     ResolutionCapture resolutionCapture = new ResolutionCapture();
-
+    private final JPanel pnlEmpty = new JPanel();
+    private final ProductTableView productTableView;
+    private final RegistrationTableView registrationTableView;
+    private final ProductionTableView productionTableView;
     private JPanel pnlMain;
     private JButton btnRegister;
     private JButton btnProduction;
@@ -21,10 +24,9 @@ public class MainWindowView extends JFrame {
     private JPanel pnlLeftLow;
     private JPanel pnlCenter;
     private JButton btnStart;
+    private JButton btnTheme;
 
     public MainWindowView() {
-        JPanel pnlEmpty = new JPanel();
-
         setTitle("Ordem de Produção");
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,19 +36,16 @@ public class MainWindowView extends JFrame {
         CardLayout cardLayout = new CardLayout();
         pnlCenter.setLayout(cardLayout);
 
-        AppsStyle.stylePanel(pnlLeft);
-        AppsStyle.stylePanel(pnlCenter);
-        AppsStyle.stylePanel(pnlEmpty);
-        AppsStyle.styleButton(btnProduct);
-        AppsStyle.styleButton(btnRegister);
-        AppsStyle.styleButton(btnProduction);
-        AppsStyle.styleButton(btnStart);
-        AppsStyle.styleButton(btnContact);
+        productTableView = new ProductTableView();
+        registrationTableView = new RegistrationTableView();
+        productionTableView = new ProductionTableView();
+
+        changeTheme();
 
         pnlCenter.add(pnlEmpty, "Empty");
-        pnlCenter.add(new ProductTableView().getPnlMain(), "Product");
-        pnlCenter.add(new RegistrationTableView().getPnlMain(), "Registration");
-        pnlCenter.add(new ProductionTableView().getPnlMain(), "Production");
+        pnlCenter.add(productTableView.getPnlMain(), "Product");
+        pnlCenter.add(registrationTableView.getPnlMain(), "Registration");
+        pnlCenter.add(productionTableView.getPnlMain(), "Production");
 
         cardLayout.show(pnlCenter, "Empty");
 
@@ -56,24 +55,31 @@ public class MainWindowView extends JFrame {
         btnRegister.addActionListener(e -> cardLayout.show(pnlCenter, "Registration"));
         btnProduction.addActionListener(e -> cardLayout.show(pnlCenter, "Production"));
         btnStart.addActionListener(e -> cardLayout.show(pnlCenter, "Empty"));
+
+        btnTheme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AppsStyle.changeTheme();
+                changeTheme();
+                pnlMain.revalidate();
+                pnlMain.repaint();
+            }
+        });
     }
 
-    private void openProductTableView(){
-        ProductTableView productTableView = new ProductTableView();
-        pnlCenter.add(productTableView.getPnlMain(), "Center");
-        pnlCenter.revalidate();
-    }
-
-    private void openRegistrationTableView(){
-        RegistrationTableView registrationTableView = new RegistrationTableView();
-        pnlCenter.add(registrationTableView.getPnlMain(), "Center");
-        pnlCenter.revalidate();
-    }
-
-    private void openProductionTableView(){
-        ProductionTableView productionTableView = new ProductionTableView();
-        pnlCenter.add(productionTableView.getPnlMain(), "Center");
-        pnlCenter.revalidate();
+    private void changeTheme(){
+        AppsStyle.stylePanel(pnlLeft);
+        AppsStyle.stylePanel(pnlCenter);
+        AppsStyle.stylePanel(pnlEmpty);
+        AppsStyle.styleButton(btnProduct);
+        AppsStyle.styleButton(btnRegister);
+        AppsStyle.styleButton(btnProduction);
+        AppsStyle.styleButton(btnStart);
+        AppsStyle.styleButton(btnContact);
+        AppsStyle.styleButton(btnTheme);
+        productTableView.changeTheme();
+        registrationTableView.changeTheme();
+        productionTableView.changeTheme();
     }
 
     public static void main(String[] args) {

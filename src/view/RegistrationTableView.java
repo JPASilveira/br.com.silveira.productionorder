@@ -34,7 +34,13 @@ public class RegistrationTableView extends JFrame {
         setLocationRelativeTo(null);
         pack();
 
-        //Styles
+
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        tbeItens.setModel(model);
+    }
+
+    public void changeTheme(){
         AppsStyle.stylePanel(pnlTop);
         AppsStyle.stylePanel(pnlLow);
         AppsStyle.styleScrollPanel(scpCenter);
@@ -45,10 +51,10 @@ public class RegistrationTableView extends JFrame {
         AppsStyle.styleButton(btnDelete);
         AppsStyle.styleButton(btnEdit);
         AppsStyle.styleButton(btnAdd);
+    }
 
-
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        tbeItens.setModel(model);
+    public JTable getTbeItens() {
+        return tbeItens;
     }
 
     private void createUIComponents() {

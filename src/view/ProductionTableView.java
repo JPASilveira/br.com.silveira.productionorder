@@ -23,6 +23,100 @@ public class ProductionTableView extends JFrame {
     String[] columnNames = {"ID", "REQUISITANTE", "PRODUTO", "QUANTIDADE", "STATUS", "VALOR"};
     Object[][] data = {
             {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
+            {2, "PEPSI", 8.00, "78766897688"},
+            {1, "COCA COLA", 10.00, "78766897687"},
             {2, "PEPSI", 8.00, "78766897688"}
     };
 
@@ -33,7 +127,13 @@ public class ProductionTableView extends JFrame {
         setLocationRelativeTo(null);
         pack();
 
-        //Styles
+        changeTheme();
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        tbeItens.setModel(model);
+    }
+
+    public void changeTheme(){
         AppsStyle.stylePanel(pnlTop);
         AppsStyle.stylePanel(pnlLow);
         AppsStyle.styleScrollPanel(scpCenter);
@@ -44,10 +144,10 @@ public class ProductionTableView extends JFrame {
         AppsStyle.styleButton(btnDelete);
         AppsStyle.styleButton(btnEdit);
         AppsStyle.styleButton(btnAdd);
+    }
 
-
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        tbeItens.setModel(model);
+    public JTable getTbeItens() {
+        return tbeItens;
     }
 
     private void createUIComponents() {

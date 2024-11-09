@@ -5,56 +5,53 @@ import view.styles.AppsStyle;
 
 import javax.swing.*;
 
-public class ProductUnitTableView extends JFrame{
-    ResolutionCapture resolutionCapture = new ResolutionCapture();
+public class ProductGroupTableView extends JFrame{
+    private ResolutionCapture resolutionCapture = new ResolutionCapture();
     private JPanel pnlMain;
-    private JPanel pnlTop;
-    private JComboBox cmbFilter;
+    private JComboBox cmbSearch;
     private JTextField txtSearch;
-    private JButton btnSearch;
     private JTable tbeItens;
     private JButton btnReturn;
     private JButton btnSelect;
     private JButton btnRemove;
     private JButton btnEdit;
     private JButton btnAdd;
+    private JPanel pnlTop;
+    private JButton btnSearch;
     private JScrollPane scpCenter;
     private JPanel pnlLow;
-    private JPanel pnlLowLeft;
     private JPanel pnlLowRight;
+    private JPanel pnlLowLeft;
 
-    public ProductUnitTableView() {
-        setTitle("Busca de Unidade");
-        setContentPane(pnlMain);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public ProductGroupTableView() {
+        setTitle("Grupo");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
         setLocationRelativeTo(null);
-
+        setContentPane(pnlMain);
+        setResizable(false);
         changeTheme();
-
         setVisible(true);
     }
-
+    
     public void changeTheme(){
         AppsStyle.stylePanel(pnlMain);
         AppsStyle.stylePanel(pnlTop);
         AppsStyle.styleScrollPanel(scpCenter);
         AppsStyle.stylePanel(pnlLow);
-        AppsStyle.stylePanel(pnlLowLeft);
         AppsStyle.stylePanel(pnlLowRight);
-        AppsStyle.styleComboBox(cmbFilter);
+        AppsStyle.stylePanel(pnlLowLeft);
+        AppsStyle.styleComboBox(cmbSearch);
         AppsStyle.styleTextField(txtSearch);
         AppsStyle.styleButton(btnSearch);
-        AppsStyle.styleTable(tbeItens);
-        AppsStyle.styleButton(btnSelect);
         AppsStyle.styleButton(btnReturn);
+        AppsStyle.styleButton(btnSelect);
         AppsStyle.styleButton(btnRemove);
         AppsStyle.styleButton(btnEdit);
         AppsStyle.styleButton(btnAdd);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(ProductUnitTableView::new);
+        SwingUtilities.invokeLater(ProductGroupTableView::new);
     }
-
 }

@@ -8,11 +8,11 @@ import java.awt.FontFormatException;
 public class FontLoader {
 
     public static Font loadFontRegular() {
-        return loadFont("src/view/styles/fonts/Ubuntu-Regular.ttf", 14f, Font.PLAIN);
+        return loadFont("src/view/styles/fonts/Ubuntu-Regular.ttf", 16f, Font.PLAIN);
     }
 
     public static Font loadFontBold() {
-        return loadFont("src/view/styles/fonts/Ubuntu-Bold.ttf", 16f, Font.BOLD);
+        return loadFont("src/view/styles/fonts/Ubuntu-Bold.ttf", 18f, Font.BOLD);
     }
 
     private static Font loadFont(String path, float size, int style) {

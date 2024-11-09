@@ -43,7 +43,7 @@ public class ProductView extends JFrame {
     public ProductView() {
         setTitle("Produto");
         setContentPane(pnlMain);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
         setLocationRelativeTo(null);
         setResizable(false);

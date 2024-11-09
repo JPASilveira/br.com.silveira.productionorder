@@ -34,7 +34,19 @@ public class ProductTableView extends JFrame {
         setLocationRelativeTo(null);
         pack();
 
-        //Styles
+        changeTheme();
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        tbeItens.setModel(model);
+
+        btnAdd.addActionListener(e -> SwingUtilities.invokeLater(ProductView::new));
+    }
+
+    public JTable getTbeItens() {
+        return tbeItens;
+    }
+
+    public void changeTheme(){
         AppsStyle.stylePanel(pnlTop);
         AppsStyle.stylePanel(pnlLow);
         AppsStyle.styleScrollPanel(scpCenter);
@@ -46,11 +58,6 @@ public class ProductTableView extends JFrame {
         AppsStyle.styleButton(btnEdit);
         AppsStyle.styleButton(btnAdd);
 
-
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        tbeItens.setModel(model);
-
-        btnAdd.addActionListener(e -> SwingUtilities.invokeLater(ProductView::new));
     }
 
     private void createUIComponents() {
