@@ -12,7 +12,7 @@
         <properties/>
         <border type="line"/>
         <children>
-          <component id="3f77c" class="javax.swing.JLabel">
+          <component id="3f77c" class="javax.swing.JLabel" binding="lblId">
             <constraints/>
             <properties>
               <text value="ID"/>

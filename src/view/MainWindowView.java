@@ -30,7 +30,7 @@ public class MainWindowView extends JFrame {
         setTitle("Ordem de Produção");
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(resolutionCapture.getWidth(), resolutionCapture.getHeight());
+        setSize(resolutionCapture.getWidth() - 1, resolutionCapture.getHeight() - 1);
         setLocationRelativeTo(null);
 
         CardLayout cardLayout = new CardLayout();
@@ -40,31 +40,19 @@ public class MainWindowView extends JFrame {
         registrationTableView = new RegistrationTableView();
         productionTableView = new ProductionTableView();
 
-        changeTheme();
-
         pnlCenter.add(pnlEmpty, "Empty");
         pnlCenter.add(productTableView.getPnlMain(), "Product");
         pnlCenter.add(registrationTableView.getPnlMain(), "Registration");
         pnlCenter.add(productionTableView.getPnlMain(), "Production");
-
         cardLayout.show(pnlCenter, "Empty");
-
-        setVisible(true);
 
         btnProduct.addActionListener(e -> cardLayout.show(pnlCenter, "Product"));
         btnRegister.addActionListener(e -> cardLayout.show(pnlCenter, "Registration"));
         btnProduction.addActionListener(e -> cardLayout.show(pnlCenter, "Production"));
         btnStart.addActionListener(e -> cardLayout.show(pnlCenter, "Empty"));
 
-        btnTheme.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AppsStyle.changeTheme();
-                changeTheme();
-                pnlMain.revalidate();
-                pnlMain.repaint();
-            }
-        });
+        changeTheme();
+        setVisible(true);
     }
 
     private void changeTheme(){
@@ -76,10 +64,6 @@ public class MainWindowView extends JFrame {
         AppsStyle.styleButton(btnProduction);
         AppsStyle.styleButton(btnStart);
         AppsStyle.styleButton(btnContact);
-        AppsStyle.styleButton(btnTheme);
-        productTableView.changeTheme();
-        registrationTableView.changeTheme();
-        productionTableView.changeTheme();
     }
 
     public static void main(String[] args) {

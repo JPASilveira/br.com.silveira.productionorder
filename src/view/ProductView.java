@@ -4,6 +4,8 @@ import util.ResolutionCapture;
 import view.styles.AppsStyle;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ProductView extends JFrame {
     ResolutionCapture resolutionCapture = new ResolutionCapture();
@@ -49,6 +51,25 @@ public class ProductView extends JFrame {
         setResizable(false);
         setVisible(true);
 
+        changeTheme();
+
+        btnGroupSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ProductGroupTableView(ProductView.this);
+            }
+        });
+    }
+
+    public void setTxtGroup(String txtGroup) {
+        this.txtGroup.setText(txtGroup);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(ProductView::new);
+    }
+
+    public void changeTheme(){
         AppsStyle.stylePanel(pnlMain);
         AppsStyle.stylePanel(pnlTop);
         AppsStyle.stylePanel(pnlCenter);
@@ -80,10 +101,5 @@ public class ProductView extends JFrame {
         AppsStyle.styleButton(btnCompose);
         AppsStyle.styleButton(btnReturn);
         AppsStyle.styleButton(btnSave);
-
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(ProductView::new);
     }
 }
