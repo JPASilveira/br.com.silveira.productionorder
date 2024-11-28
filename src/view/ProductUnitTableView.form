@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.ProductUnitTableView">
   <grid id="27dc6" binding="pnlMain" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="518" height="400"/>
+      <xy x="20" y="20" width="561" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -16,8 +16,9 @@
             <constraints/>
             <properties>
               <model>
-                <item value="ID"/>
-                <item value="NOME"/>
+                <item value="Id"/>
+                <item value="Nome"/>
+                <item value="Un"/>
               </model>
               <popupVisible value="false"/>
               <preferredSize width="135" height="30"/>

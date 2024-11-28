@@ -5,7 +5,7 @@ import model.enums.EnumUnit;
 public class ProductUnit {
     private Integer unitId;
     private String unitName;
-    private EnumUnit unitAcronym;
+    private String unitAcronym;
 
     public ProductUnit() {}
 
@@ -26,13 +26,10 @@ public class ProductUnit {
     }
 
     public String getUnitAcronym() {
-        if (unitAcronym == null) {
-            return null;
-        }
-        return unitAcronym.name();
+        return unitAcronym;
     }
 
     public void setUnitAcronym(String unitAcronym) {
-        this.unitAcronym = EnumUnit.valueOf(unitAcronym);
+        this.unitAcronym =unitAcronym;
     }
 }

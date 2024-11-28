@@ -22,7 +22,7 @@ public class ProductGroupView extends JFrame {
 
     public ProductGroupView(boolean isUpdate, String productGroupId, String productGroupName) throws HeadlessException {
         setTitle("Grupo");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(resolutionCapture.getWidth() / 2, resolutionCapture.getHeight() / 2);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -38,11 +38,10 @@ public class ProductGroupView extends JFrame {
         btnSave.addActionListener(e -> {
             if (isUpdate){
                 try {
-                    ProductGroupController.editProductGroup(productGroupId, txtName.getText());
-                    txtName.setText("");
+                    ProductGroupController.updateProductGroup(productGroupId, txtName.getText());
                     this.dispose();
                 } catch (Exception ex) {
-                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao atualizar!");
+                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao atualizar");
                 }
             }else{
                 try {
@@ -50,7 +49,7 @@ public class ProductGroupView extends JFrame {
                     txtName.setText("");
                     this.dispose();
                 } catch (Exception ex) {
-                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao adicionar!");
+                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao adicionar");
                 }
             }
         });

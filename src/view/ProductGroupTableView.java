@@ -131,7 +131,6 @@ public class ProductGroupTableView extends JFrame {
 
     private void updateTable(Object[][] tableData) {
         if (tbeItens == null) {
-            System.out.println("tbeItens não foi inicializada.");
             return;
         }
 
@@ -143,7 +142,7 @@ public class ProductGroupTableView extends JFrame {
         tbeItens.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    public void searchData(){
+    private void searchData(){
         String searchText = txtSearch.getText();
         String searchOption = cmbSearch.getSelectedItem().toString();
         data = ProductGroupController.searchProductGroup(searchOption, searchText);

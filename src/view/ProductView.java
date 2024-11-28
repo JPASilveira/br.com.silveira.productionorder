@@ -53,16 +53,31 @@ public class ProductView extends JFrame {
 
         changeTheme();
 
-        btnGroupSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ProductGroupTableView(ProductView.this);
-            }
+        btnGroupSearch.addActionListener(e -> {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new ProductGroupTableView(ProductView.this);
+                }
+            });
+        });
+
+        btnUnitSearch.addActionListener(e ->  {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new ProductUnitTableView(ProductView.this);
+                }
+            });
         });
     }
 
     public void setTxtGroup(String txtGroup) {
         this.txtGroup.setText(txtGroup);
+    }
+
+    public void setTxtUnit(String txtUnit) {
+        this.txtUnit.setText(txtUnit);
     }
 
     public static void main(String[] args) {

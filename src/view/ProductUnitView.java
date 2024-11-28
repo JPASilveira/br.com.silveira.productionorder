@@ -1,9 +1,11 @@
 package view;
 
+import controller.ProductUnitController;
 import util.ResolutionCapture;
 import view.styles.AppsStyle;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ProductUnitView extends JFrame{
     ResolutionCapture resolutionCapture = new ResolutionCapture();
@@ -22,14 +24,44 @@ public class ProductUnitView extends JFrame{
     private JPanel pnlCenterOne;
     private JLabel lblUnit;
 
-    public ProductUnitView(){
-        setTitle("Unidade de Produto");
+    public ProductUnitView(boolean isUpdate, String productUnitId, String productUnitName, String productUnitAcronym) throws HeadlessException {
+        setTitle("Unidade");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
         setLocationRelativeTo(null);
         setResizable(false);
         setContentPane(pnlMain);
         changeTheme();
+
+        if(isUpdate){
+            btnSave.setText("Atualizar");
+            lblId.setText("ID: " + productUnitId);
+            txtName.setText(productUnitName);
+            txtUnit.setText(productUnitAcronym);
+        }
+
+        btnSave.addActionListener(e -> {
+            if(isUpdate){
+                try {
+                    ProductUnitController.updateProductUnit(productUnitId, txtName.getText(), txtUnit.getText());
+                    this.dispose();
+                }catch (Exception ex){
+                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao atualizar");
+                }
+            }else {
+                try {
+                    ProductUnitController.addProductUnit(txtName.getText(), txtUnit.getText());
+                    this.dispose();
+                }catch (Exception ex){
+                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao adicionar");
+                }
+            }
+        });
+
+        btnReturn.addActionListener(e -> {
+            this.dispose();
+        });
+
         setVisible(true);
     }
 
@@ -47,9 +79,5 @@ public class ProductUnitView extends JFrame{
         AppsStyle.styleTextField(txtUnit);
         AppsStyle.styleButton(btnReturn);
         AppsStyle.styleButton(btnSave);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(ProductUnitView::new);
     }
 }

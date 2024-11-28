@@ -1,15 +1,20 @@
 package debug;
 
+import controller.ProductUnitController;
 import model.ProductUnit;
 import model.enums.EnumUnit;
+import repository.ProductGroupDAO;
 import repository.ProductUnitDAO;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class DebugProductUnitDAO {
     public static void testUnit(String operation){
         ProductUnit productUnit = new ProductUnit();
-        productUnit.setUnitId(1);
-        productUnit.setUnitName("Kilogram2");
-        productUnit.setUnitAcronym("KG");
+        productUnit.setUnitId(2);
+        productUnit.setUnitName("Kt");
+        productUnit.setUnitAcronym("kt");
 
         switch(operation){
             case "add":
@@ -27,6 +32,7 @@ public class DebugProductUnitDAO {
     }
 
     public static void main(String[] args) {
-        testUnit("delete");
+        ProductUnitController.updateProductUnit("2", "ll", "ll");
+
     }
 }
