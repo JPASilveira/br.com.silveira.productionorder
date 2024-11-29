@@ -130,13 +130,13 @@ public class ProductUnitTableView extends JFrame{
         });
 
         //Atalho para Editar (F2)
-        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-                .put(KeyStroke.getKeyStroke("F2"), "edit");
-        pnlMain.getActionMap().put("edit", new AbstractAction() {
+        pnlMain.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+                .put(KeyStroke.getKeyStroke("F2"), "editU");
+        pnlMain.getActionMap().put("editU", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 btnEdit.doClick();
-                tbeItens.requestFocus();
+                //tbeItens.requestFocus();
             }
         });
 
@@ -210,6 +210,8 @@ public class ProductUnitTableView extends JFrame{
                 searchData();
             }
         });
+
+        tbeItens.requestFocus();
         setVisible(true);
     }
 

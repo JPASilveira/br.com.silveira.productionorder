@@ -6,6 +6,8 @@ import view.styles.AppsStyle;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
 
 public class ProductUnitView extends JFrame{
     ResolutionCapture resolutionCapture = new ResolutionCapture();
@@ -34,12 +36,13 @@ public class ProductUnitView extends JFrame{
         changeTheme();
 
         if(isUpdate){
-            btnSave.setText("Atualizar");
+            btnSave.setText("(F6) Atualizar");
             lblId.setText("ID: " + productUnitId);
             txtName.setText(productUnitName);
             txtUnit.setText(productUnitAcronym);
         }
 
+        //Ação botão salvar
         btnSave.addActionListener(e -> {
             if(isUpdate){
                 try {
@@ -58,11 +61,39 @@ public class ProductUnitView extends JFrame{
             }
         });
 
+        //Atalho para salvar (F6)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F6"), "save");
+        pnlMain.getActionMap().put("save", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSave.doClick();
+            }
+        });
+
         btnReturn.addActionListener(e -> {
             this.dispose();
         });
 
+        // Atalho para Retornar (Esc)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ESCAPE"), "return");
+        pnlMain.getActionMap().put("return", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnReturn.doClick();
+            }
+        });
+
+        configureEnterNavigation(txtName);
+        configureEnterNavigation(txtUnit);
+
+        pnlMain.requestFocusInWindow();
         setVisible(true);
+    }
+
+    private static void configureEnterNavigation(JTextField textField) {
+        textField.addActionListener((ActionEvent e) -> textField.transferFocus());
     }
 
     public void changeTheme(){
