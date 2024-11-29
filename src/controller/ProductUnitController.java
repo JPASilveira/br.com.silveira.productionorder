@@ -59,7 +59,7 @@ public class ProductUnitController{
         }
 
         switch (cmbSearch){
-            case "Id":
+            case "ID":
                 try {
                     result = ProductUnitDAO.getProductUnitById(Integer.parseInt(productUnitSearch));
                     if (result.isPresent()){
@@ -71,7 +71,7 @@ public class ProductUnitController{
                     throw new ProductUnitControllerException("ID deve ser um número válido");
                 }
 
-            case "Nome":
+            case "NOME":
                 result = ProductUnitDAO.getProductUnitByName(productUnitSearch);
                 if (result.isPresent()){
                     data = result.get();
@@ -79,7 +79,7 @@ public class ProductUnitController{
                 }
                 return new Object[0][0];
 
-            case "Un":
+            case "UN":
                 if(productUnitSearch.trim().length() != 2){
                     throw new ProductUnitControllerException("A sigla deve conter 2 caracteres");
                 }

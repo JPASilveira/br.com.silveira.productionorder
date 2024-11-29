@@ -8,7 +8,7 @@ import java.awt.FontFormatException;
 public class FontLoader {
 
     public static Font loadFontRegular() {
-        return loadFont("src/view/styles/fonts/Ubuntu-Regular.ttf", 16f, Font.PLAIN);
+        return loadFont("src/view/styles/fonts/Ubuntu-Regular.ttf", 18f, Font.PLAIN);
     }
 
     public static Font loadFontBold() {

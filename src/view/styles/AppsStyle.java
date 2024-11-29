@@ -33,6 +33,12 @@ public class AppsStyle {
         label.setFont(regularFont);
     }
 
+    public static void styleLabelBold(JLabel label) {
+        label.setBackground(backgroundColor);
+        label.setForeground(textColor);
+        label.setFont(boldFont);
+    }
+
     public static void styleButton(JButton button) {
         button.setBackground(btnColor);
         button.setForeground(textColor);
@@ -48,7 +54,7 @@ public class AppsStyle {
     public static void styleComboBox(JComboBox comboBox) {
         comboBox.setBackground(backgroundColor);
         comboBox.setForeground(textColor);
-        comboBox.setFont(regularFont);
+        comboBox.setFont(boldFont);
     }
 
     public static void styleTable(JTable table) {
@@ -75,9 +81,8 @@ public class AppsStyle {
 
     public static void showErrorDialog(String message, String title) {
         JLabel label = new JLabel(message);
-        label.setFont(regularFont);
+        label.setFont(boldFont);
         label.setForeground(textColor);
-        label.setBackground(backgroundColor);
         label.setOpaque(true);
 
         JButton closeButton = new JButton("Fechar");
@@ -97,7 +102,8 @@ public class AppsStyle {
         JOptionPane optionPane = new JOptionPane(label, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0]);
         JDialog dialog = optionPane.createDialog(title);
 
-        dialog.getContentPane().setBackground(backgroundColor);
+        dialog.setBackground(backgroundColor);
+        //dialog.getContentPane().setBackground(backgroundColor);
         dialog.setVisible(true);
     }
 }

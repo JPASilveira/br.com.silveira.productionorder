@@ -61,26 +61,24 @@ public class ProductGroupTableView extends JFrame {
             });
         });
 
-        btnEdit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = tbeItens.getSelectedRow();
+        btnEdit.addActionListener(e -> {
+            int selectedRow = tbeItens.getSelectedRow();
 
-                if (selectedRow != -1) {
-                    String id = tbeItens.getValueAt(selectedRow, 0).toString();
-                    String name = tbeItens.getValueAt(selectedRow, 1).toString();
+            if (selectedRow != -1) {
+                String id = tbeItens.getValueAt(selectedRow, 0).toString();
+                String name = tbeItens.getValueAt(selectedRow, 1).toString();
 
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            new ProductGroupView(true, id, name);
-                        }
-                    } );
-                } else {
-                    AppsStyle.showErrorDialog("Nenhum grupo selecionado", "Erro de Busca");
-                }
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        new ProductGroupView(true, id, name);
+                    }
+                } );
+            } else {
+                AppsStyle.showErrorDialog("Nenhum grupo selecionado", "Erro de Busca");
             }
         });
+
 
         btnRemove.addActionListener(new ActionListener() {
             @Override
@@ -97,27 +95,21 @@ public class ProductGroupTableView extends JFrame {
             }
         });
 
-        btnSelect.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = tbeItens.getSelectedRow();
-                if (selectedRow != -1) {
-                    String id = tbeItens.getValueAt(selectedRow, 0).toString();
+        btnSelect.addActionListener(e -> {
+            int selectedRow = tbeItens.getSelectedRow();
+            if (selectedRow != -1) {
+                String id = tbeItens.getValueAt(selectedRow, 0).toString();
 
-                    if (parentView != null) {
-                        parentView.setTxtGroup(id);
-                    }
-
-                    dispose();
+                if (parentView != null) {
+                    parentView.setTxtGroup(id);
                 }
+
+                dispose();
             }
         });
 
-        btnReturn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+        btnReturn.addActionListener(e -> {
+            dispose();
         });
 
         addWindowFocusListener(new WindowAdapter() {

@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.ProductUnitTableView">
   <grid id="27dc6" binding="pnlMain" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="561" height="400"/>
+      <xy x="20" y="20" width="664" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -12,13 +12,19 @@
         <properties/>
         <border type="line"/>
         <children>
+          <component id="2ae33" class="javax.swing.JLabel" binding="lblSearch">
+            <constraints/>
+            <properties>
+              <text value="(F4)"/>
+            </properties>
+          </component>
           <component id="84182" class="javax.swing.JComboBox" binding="cmbFilter">
             <constraints/>
             <properties>
               <model>
-                <item value="Id"/>
-                <item value="Nome"/>
-                <item value="Un"/>
+                <item value="NOME"/>
+                <item value="UN"/>
+                <item value="ID"/>
               </model>
               <popupVisible value="false"/>
               <preferredSize width="135" height="30"/>
@@ -33,8 +39,8 @@
           <component id="2bec5" class="javax.swing.JButton" binding="btnSearch">
             <constraints/>
             <properties>
-              <preferredSize width="150" height="23"/>
-              <text value="Pesquisar"/>
+              <preferredSize width="200" height="23"/>
+              <text value="(F5) Pesquisar"/>
             </properties>
           </component>
         </children>
@@ -63,22 +69,22 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="118b3" class="javax.swing.JButton" binding="btnRemove">
+              <component id="867a0" class="javax.swing.JButton" binding="btnAdd">
                 <constraints/>
                 <properties>
-                  <text value="Remover"/>
+                  <text value="(F1) Adicionar"/>
                 </properties>
               </component>
               <component id="97f72" class="javax.swing.JButton" binding="btnEdit">
                 <constraints/>
                 <properties>
-                  <text value="Editar"/>
+                  <text value="(F2) Editar"/>
                 </properties>
               </component>
-              <component id="867a0" class="javax.swing.JButton" binding="btnAdd">
+              <component id="118b3" class="javax.swing.JButton" binding="btnRemove">
                 <constraints/>
                 <properties>
-                  <text value="Adicionar"/>
+                  <text value="(F3) Remover"/>
                 </properties>
               </component>
             </children>
@@ -98,13 +104,13 @@
               <component id="806f7" class="javax.swing.JButton" binding="btnReturn">
                 <constraints/>
                 <properties>
-                  <text value="Retornar"/>
+                  <text value="(ESC) Retornar"/>
                 </properties>
               </component>
               <component id="a6887" class="javax.swing.JButton" binding="btnSelect">
                 <constraints/>
                 <properties>
-                  <text value="Selecionar"/>
+                  <text value="(F6) Selecionar"/>
                 </properties>
               </component>
             </children>
