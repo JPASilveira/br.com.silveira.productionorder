@@ -62,13 +62,13 @@
               <component id="4d543" class="javax.swing.JButton" binding="btnReturn">
                 <constraints/>
                 <properties>
-                  <text value="Retornar"/>
+                  <text value="(ESC) Retornar"/>
                 </properties>
               </component>
               <component id="1bd7" class="javax.swing.JButton" binding="btnSave">
                 <constraints/>
                 <properties>
-                  <text value="Salvar"/>
+                  <text value="(F6) Salvar"/>
                 </properties>
               </component>
             </children>

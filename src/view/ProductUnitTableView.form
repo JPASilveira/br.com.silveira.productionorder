@@ -18,7 +18,7 @@
               <text value="(F4)"/>
             </properties>
           </component>
-          <component id="84182" class="javax.swing.JComboBox" binding="cmbFilter">
+          <component id="84182" class="javax.swing.JComboBox" binding="cmbSearch">
             <constraints/>
             <properties>
               <model>

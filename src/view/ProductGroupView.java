@@ -6,6 +6,7 @@ import view.styles.AppsStyle;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class ProductGroupView extends JFrame {
     ResolutionCapture resolutionCapture = new ResolutionCapture();
@@ -35,6 +36,7 @@ public class ProductGroupView extends JFrame {
             setLblId(productGroupId);
         }
 
+        //Ação do botão Salvar
         btnSave.addActionListener(e -> {
             if (isUpdate){
                 try {
@@ -54,10 +56,35 @@ public class ProductGroupView extends JFrame {
             }
         });
 
+        //Atalho para salvar (F6)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F6"), "save");
+        pnlMain.getActionMap().put("save", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSave.doClick();
+            }
+        });
+
         btnReturn.addActionListener(e -> {
             this.dispose();
         });
 
+        btnReturn.addActionListener(e -> {
+            this.dispose();
+        });
+
+        // Atalho para Retornar (Esc)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ESCAPE"), "return");
+        pnlMain.getActionMap().put("return", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnReturn.doClick();
+            }
+        });
+
+        txtName.requestFocus();
         setVisible(true);
     }
 

@@ -26,6 +26,7 @@ public class ProductGroupTableView extends JFrame {
     private JPanel pnlLow;
     private JPanel pnlLowRight;
     private JPanel pnlLowLeft;
+    private JLabel lblSearch;
     private ProductView parentView;
     private DefaultTableModel model;
     Object[][] data;
@@ -44,6 +45,7 @@ public class ProductGroupTableView extends JFrame {
         DefaultTableModel model = new DefaultTableModel(data, new String[] {"ID", "NOME"});
         tbeItens.setModel(model);
 
+        //Ação do botão de busca
         btnSearch.addActionListener(e -> {
             try {
                 searchData();
@@ -52,6 +54,38 @@ public class ProductGroupTableView extends JFrame {
             }
         });
 
+        //Focar no combox dos filtros
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F4"), "focusFilter");
+        pnlMain.getActionMap().put("focusFilter", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cmbSearch.requestFocus();
+            }
+        });
+
+        //Focar no Campo de Busca (F5)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F5"), "focusSearch");
+        pnlMain.getActionMap().put("focusSearch", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtSearch.requestFocus();
+            }
+        });
+
+        //Executar Busca
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ENTER"), "search");
+        pnlMain.getActionMap().put("search", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSearch.doClick();
+                tbeItens.requestFocus();
+            }
+        });
+
+        //Ação do botão de Adicionar
         btnAdd.addActionListener(e -> {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
@@ -61,6 +95,18 @@ public class ProductGroupTableView extends JFrame {
             });
         });
 
+        //Atalho para Adicionar (F1)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F1"), "add");
+        pnlMain.getActionMap().put("add", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnAdd.doClick();
+                tbeItens.requestFocus();
+            }
+        });
+
+        //Ação do botão Editar
         btnEdit.addActionListener(e -> {
             int selectedRow = tbeItens.getSelectedRow();
 
@@ -79,7 +125,18 @@ public class ProductGroupTableView extends JFrame {
             }
         });
 
+        //Atalho para Editar (F2)
+        pnlMain.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
+                .put(KeyStroke.getKeyStroke("F2"), "editU");
+        pnlMain.getActionMap().put("editU", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnEdit.doClick();
+                //tbeItens.requestFocus();
+            }
+        });
 
+        //Ação do botão Remover
         btnRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,6 +152,19 @@ public class ProductGroupTableView extends JFrame {
             }
         });
 
+        //Atalho para Remover (F3)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F3"), "remove");
+        pnlMain.getActionMap().put("remove", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnRemove.doClick();
+                tbeItens.requestFocus();
+            }
+        });
+
+
+        //Ação do botão Remover
         btnSelect.addActionListener(e -> {
             int selectedRow = tbeItens.getSelectedRow();
             if (selectedRow != -1) {
@@ -108,14 +178,36 @@ public class ProductGroupTableView extends JFrame {
             }
         });
 
+        //Atalho para Selecionar (Enter)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F6"), "select");
+        pnlMain.getActionMap().put("select", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSelect.doClick();
+            }
+        });
+
+        //Ação do botão Retornar
         btnReturn.addActionListener(e -> {
             dispose();
+        });
+
+        // Atalho para Retornar (Esc)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ESCAPE"), "return");
+        pnlMain.getActionMap().put("return", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnReturn.doClick();
+            }
         });
 
         addWindowFocusListener(new WindowAdapter() {
             @Override
             public void windowGainedFocus(WindowEvent e) {
                 searchData();
+                tbeItens.requestFocus();
             }
         });
         setVisible(true);
@@ -158,6 +250,7 @@ public class ProductGroupTableView extends JFrame {
         AppsStyle.styleButton(btnEdit);
         AppsStyle.styleButton(btnAdd);
         AppsStyle.styleTable(tbeItens);
+        AppsStyle.styleLabelBold(lblSearch);
     }
 }
 

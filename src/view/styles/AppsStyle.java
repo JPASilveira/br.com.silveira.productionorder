@@ -71,6 +71,16 @@ public class AppsStyle {
         table.setFillsViewportHeight(true);
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         table.setDefaultRenderer(Object.class, centerRenderer);
+        InputMap inputMap = table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        inputMap.put(KeyStroke.getKeyStroke("F1"), "none");
+        inputMap.put(KeyStroke.getKeyStroke("F2"), "none");
+        inputMap.put(KeyStroke.getKeyStroke("F3"), "none");
+        inputMap.put(KeyStroke.getKeyStroke("F4"), "none");
+        inputMap.put(KeyStroke.getKeyStroke("F5"), "none");
+        inputMap.put(KeyStroke.getKeyStroke("F6"), "none");
+        inputMap.put(KeyStroke.getKeyStroke("ESC"), "none");
+        inputMap.put(KeyStroke.getKeyStroke("ENTER"), "none");
+
     }
 
     public static void styleCheckBox(JCheckBox checkBox) {

@@ -144,6 +144,8 @@ public class ProductionTableView extends JFrame {
         AppsStyle.styleButton(btnDelete);
         AppsStyle.styleButton(btnEdit);
         AppsStyle.styleButton(btnAdd);
+        scpCenter.getVerticalScrollBar().setBackground(AppsStyle.btnColor);
+        scpCenter.getVerticalScrollBar().setBorder(BorderFactory.createLineBorder(AppsStyle.btnColor));
     }
 
     public JTable getTbeItens() {

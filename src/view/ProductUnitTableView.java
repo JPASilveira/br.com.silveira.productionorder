@@ -14,7 +14,7 @@ public class ProductUnitTableView extends JFrame{
     ResolutionCapture resolutionCapture = new ResolutionCapture();
     private JPanel pnlMain;
     private JPanel pnlTop;
-    private JComboBox cmbFilter;
+    private JComboBox cmbSearch;
     private JTextField txtSearch;
     private JButton btnSearch;
     private JTable tbeItens;
@@ -62,7 +62,7 @@ public class ProductUnitTableView extends JFrame{
         pnlMain.getActionMap().put("focusFilter", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cmbFilter.requestFocus();
+                cmbSearch.requestFocus();
             }
         });
 
@@ -208,10 +208,10 @@ public class ProductUnitTableView extends JFrame{
             @Override
             public void windowGainedFocus(WindowEvent e) {
                 searchData();
+                tbeItens.requestFocus();
             }
         });
 
-        tbeItens.requestFocus();
         setVisible(true);
     }
 
@@ -232,7 +232,7 @@ public class ProductUnitTableView extends JFrame{
 
     private void searchData(){
         String searchText = txtSearch.getText();
-        String searchOption = cmbFilter.getSelectedItem().toString();
+        String searchOption = cmbSearch.getSelectedItem().toString();
         data = ProductUnitController.searchProductUnit(searchOption, searchText);
 
         updateTable(data);
@@ -245,7 +245,7 @@ public class ProductUnitTableView extends JFrame{
         AppsStyle.stylePanel(pnlLow);
         AppsStyle.stylePanel(pnlLowLeft);
         AppsStyle.stylePanel(pnlLowRight);
-        AppsStyle.styleComboBox(cmbFilter);
+        AppsStyle.styleComboBox(cmbSearch);
         AppsStyle.styleTextField(txtSearch);
         AppsStyle.styleButton(btnSearch);
         AppsStyle.styleTable(tbeItens);
