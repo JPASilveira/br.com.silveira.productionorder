@@ -54,6 +54,7 @@ public class ProductGroupController {
         switch (cmbSearch) {
             case "Id":
                 try {
+                    ArrayList<ProductGroup> productGroups = new ArrayList<>();
                     result = ProductGroupDAO.getProductGroupById(Integer.parseInt(productGroupSearch));
                     if (result.isPresent()) {
                         data = result.get();

@@ -63,7 +63,6 @@ public class ProductGroupDAO {
         }
     }
 
-
     public static @NotNull Optional<ArrayList<ProductGroup>> getProductGroupByName(String productGroupName) {
         String sql = "SELECT * FROM product_group WHERE group_name LIKE ?";
         productGroupName = "%" + productGroupName + "%";

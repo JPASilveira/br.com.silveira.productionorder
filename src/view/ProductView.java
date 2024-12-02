@@ -1,9 +1,11 @@
 package view;
 
+import controller.ProductController;
 import util.ResolutionCapture;
 import view.styles.AppsStyle;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -42,17 +44,29 @@ public class ProductView extends JFrame {
     private JButton btnGroupSearch;
     private JButton btnUnitSearch;
 
-    public ProductView() {
+    public ProductView(boolean isUpdate, String productId, String productReference, String productName, String productPrice, String productQuantity, String productGroup, String productUnit, boolean productCompose) {
         setTitle("Produto");
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
         setLocationRelativeTo(null);
         setResizable(false);
-        setVisible(true);
+
+        if (isUpdate) {
+            btnSave.setText("(F6) Atualizar");
+            lblId.setText("ID: " + productId);
+            txtReference.setText(productReference);
+            txtName.setText(productName);
+            txtPrice.setText(productPrice);
+            txtQuantity.setText(productQuantity);
+            txtGroup.setText(productGroup);
+            txtUnit.setText(productUnit);
+            cbIsCompose.setSelected(productCompose);
+        }
 
         changeTheme();
 
+        //Ação do botão busca grupo
         btnGroupSearch.addActionListener(e -> {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
@@ -62,6 +76,17 @@ public class ProductView extends JFrame {
             });
         });
 
+        //Atalho para buscar grupo (F1)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F2"), "searchGroup");
+        pnlMain.getActionMap().put("searchGroup", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnGroupSearch.doClick();
+            }
+        });
+
+        //Ação do botão busca unidade
         btnUnitSearch.addActionListener(e ->  {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
@@ -70,6 +95,88 @@ public class ProductView extends JFrame {
                 }
             });
         });
+
+        //Atalho para buscar unidade (F2)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F1"), "searchUnit");
+        pnlMain.getActionMap().put("searchUnit", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnUnitSearch.doClick();
+            }
+        });
+
+        //Ação do botão salvar
+        btnSave.addActionListener(e -> {
+            String reference = txtReference.getText();
+            String name = txtName.getText();
+            String price = txtPrice.getText();
+            String quantity = txtQuantity.getText();
+            String unit = txtUnit.getText();
+            String group = txtGroup.getText();
+            boolean compose = cbIsCompose.isSelected();
+            if(isUpdate){
+                try {
+                    ProductController.updateProduct(productId, reference, name, price, quantity, unit, group, compose);
+                    dispose();
+                } catch (Exception ex) {
+                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao editar");
+                }
+            }
+            else {
+                try {
+                    ProductController.addProduct(reference, name, price, quantity, unit, group, compose);
+                    dispose();
+                }catch (Exception ex){
+                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao adicionar");
+                }
+            }
+        });
+
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F6"), "save");
+        pnlMain.getActionMap().put("save", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSave.doClick();
+            }
+        });
+
+        //Ação do botão retornar
+        btnReturn.addActionListener(e -> {
+            dispose();
+        });
+
+        // Atalho para Retornar (Esc)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ESCAPE"), "return");
+        pnlMain.getActionMap().put("return", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnReturn.doClick();
+            }
+        });
+
+        //Ação da caixa de composição
+        cbIsCompose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(isUpdate){
+                    System.out.println("Update");
+                }
+                AppsStyle.showErrorDialog("Salve o produto primeiro, depois edite para habilitar a composição","Habilitar composição");
+                cbIsCompose.setSelected(false);
+            }
+        });
+
+        configureEnterNavigation(txtReference, txtName);
+        configureEnterNavigation(txtName, txtPrice);
+        configureEnterNavigation(txtPrice, txtQuantity);
+        configureEnterNavigation(txtQuantity, txtUnit);
+        configureEnterNavigation(txtUnit, txtGroup);
+        configureEnterNavigation(txtGroup, txtReference);
+
+        setVisible(true);
     }
 
     public void setTxtGroup(String txtGroup) {
@@ -80,9 +187,10 @@ public class ProductView extends JFrame {
         this.txtUnit.setText(txtUnit);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(ProductView::new);
+    private void configureEnterNavigation(JTextField textField, JTextField nextField) {
+        textField.addActionListener(e -> nextField.requestFocusInWindow());
     }
+
 
     public void changeTheme(){
         AppsStyle.stylePanel(pnlMain);

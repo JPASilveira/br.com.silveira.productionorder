@@ -12,17 +12,26 @@
         <properties/>
         <border type="line"/>
         <children>
+          <component id="dc3" class="javax.swing.JLabel" binding="lblFilter">
+            <constraints/>
+            <properties>
+              <text value="(F4)"/>
+            </properties>
+          </component>
           <component id="1d247" class="javax.swing.JComboBox" binding="cmbFilter">
             <constraints/>
             <properties>
               <alignmentX value="0.5"/>
               <alignmentY value="0.5"/>
               <model>
-                <item value="ID"/>
                 <item value="NOME"/>
                 <item value="PREÇO"/>
-                <item value="UNIDADE"/>
+                <item value="QUANTIDADE"/>
                 <item value="REFERÊNCIA"/>
+                <item value="ID PRODUTO"/>
+                <item value="ID UNIDADE"/>
+                <item value="ID GRUPO"/>
+                <item value="COMPOSTO"/>
               </model>
               <preferredSize width="135" height="30"/>
             </properties>
@@ -36,8 +45,8 @@
           <component id="22d52" class="javax.swing.JButton" binding="btnSearch">
             <constraints/>
             <properties>
-              <preferredSize width="150" height="23"/>
-              <text value="Pesquisar"/>
+              <preferredSize width="200" height="23"/>
+              <text value="(F5) Pesquisar"/>
             </properties>
           </component>
         </children>
@@ -58,22 +67,22 @@
         <properties/>
         <border type="line"/>
         <children>
-          <component id="e62e6" class="javax.swing.JButton" binding="btnDelete">
+          <component id="112df" class="javax.swing.JButton" binding="btnAdd">
             <constraints/>
             <properties>
-              <text value="Deletar"/>
+              <text value="(F1) Adicionar"/>
             </properties>
           </component>
           <component id="c730f" class="javax.swing.JButton" binding="btnEdit">
             <constraints/>
             <properties>
-              <text value="Editar"/>
+              <text value="(F2) Editar"/>
             </properties>
           </component>
-          <component id="112df" class="javax.swing.JButton" binding="btnAdd">
+          <component id="e62e6" class="javax.swing.JButton" binding="btnDelete">
             <constraints/>
             <properties>
-              <text value="Adicionar"/>
+              <text value="(F3) Remover"/>
             </properties>
           </component>
         </children>

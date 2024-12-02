@@ -20,6 +20,7 @@ public class ProductTableView extends JFrame {
     private JButton btnEdit;
     private JButton btnDelete;
     private JButton btnSearch;
+    private JLabel lblFilter;
 
     String[] columnNames = {"ID", "REFERÊNCIA", "NOME", "PREÇO", "QUANTIDADE", "COMPOSTO", "GRUPO", "UN"};
     Object[][] data = {
@@ -39,7 +40,23 @@ public class ProductTableView extends JFrame {
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         tbeItens.setModel(model);
 
-        btnAdd.addActionListener(e -> SwingUtilities.invokeLater(ProductView::new));
+        btnAdd.addActionListener(e -> {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new ProductView(false, "", "", "", "", "", "", "", false);
+                }
+            });
+        });
+
+        btnEdit.addActionListener(e -> {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new ProductView(true, "", "", "", "", "", "", "", false);
+                }
+            });
+        });
     }
 
     public JTable getTbeItens() {
@@ -57,6 +74,7 @@ public class ProductTableView extends JFrame {
         AppsStyle.styleButton(btnDelete);
         AppsStyle.styleButton(btnEdit);
         AppsStyle.styleButton(btnAdd);
+        AppsStyle.styleLabelBold(lblFilter);
 
     }
 

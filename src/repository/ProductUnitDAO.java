@@ -81,7 +81,7 @@ public class ProductUnitDAO {
         String sql = "SELECT * FROM product_unit WHERE unit_id = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setInt(1, productUnitId);
             try (ResultSet resultSet = preparedStatement.executeQuery()){
                 return getProductUnits(resultSet);

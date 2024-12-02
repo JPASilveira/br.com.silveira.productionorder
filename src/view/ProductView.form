@@ -28,13 +28,13 @@
           <component id="aacce" class="javax.swing.JButton" binding="btnReturn">
             <constraints/>
             <properties>
-              <text value="Retornar"/>
+              <text value="(ESC) Retornar"/>
             </properties>
           </component>
           <component id="72ecc" class="javax.swing.JButton" binding="btnSave">
             <constraints/>
             <properties>
-              <text value="Salvar"/>
+              <text value="(F6) Salvar"/>
             </properties>
           </component>
         </children>
@@ -147,23 +147,23 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="e93b4" class="javax.swing.JLabel" binding="lblGroup">
+              <component id="2e78b" class="javax.swing.JLabel" binding="lblUnit">
                 <constraints/>
                 <properties>
                   <preferredSize width="150" height="17"/>
-                  <text value="Grupo ID:"/>
+                  <text value="Unidade ID:"/>
                 </properties>
               </component>
-              <component id="877d3" class="javax.swing.JTextField" binding="txtGroup">
+              <component id="d0ab9" class="javax.swing.JTextField" binding="txtUnit">
                 <constraints/>
                 <properties>
-                  <preferredSize width="300" height="30"/>
+                  <preferredSize width="140" height="30"/>
                 </properties>
               </component>
-              <component id="67e06" class="javax.swing.JButton" binding="btnGroupSearch">
+              <component id="f74e1" class="javax.swing.JButton" binding="btnUnitSearch">
                 <constraints/>
                 <properties>
-                  <text value="Pesquisar"/>
+                  <text value="(F1) Pesquisar"/>
                 </properties>
               </component>
             </children>
@@ -175,23 +175,23 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="2e78b" class="javax.swing.JLabel" binding="lblUnit">
+              <component id="e93b4" class="javax.swing.JLabel" binding="lblGroup">
                 <constraints/>
                 <properties>
                   <preferredSize width="150" height="17"/>
-                  <text value="Unidade ID:"/>
+                  <text value="Grupo ID:"/>
                 </properties>
               </component>
-              <component id="d0ab9" class="javax.swing.JTextField" binding="txtUnit">
+              <component id="877d3" class="javax.swing.JTextField" binding="txtGroup">
                 <constraints/>
                 <properties>
-                  <preferredSize width="300" height="30"/>
+                  <preferredSize width="140" height="30"/>
                 </properties>
               </component>
-              <component id="f74e1" class="javax.swing.JButton" binding="btnUnitSearch">
+              <component id="67e06" class="javax.swing.JButton" binding="btnGroupSearch">
                 <constraints/>
                 <properties>
-                  <text value="Pesquisar"/>
+                  <text value="(F2) Pesquisar"/>
                 </properties>
               </component>
             </children>
@@ -221,7 +221,7 @@
                   <component id="89d7f" class="javax.swing.JButton" binding="btnCompose">
                     <constraints/>
                     <properties>
-                      <text value="Definir composição"/>
+                      <text value="(F3) Definir composição"/>
                     </properties>
                   </component>
                 </children>
