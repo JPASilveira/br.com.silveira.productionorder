@@ -25,13 +25,9 @@
               <alignmentY value="0.5"/>
               <model>
                 <item value="NOME"/>
-                <item value="PREÇO"/>
-                <item value="QUANTIDADE"/>
                 <item value="REFERÊNCIA"/>
-                <item value="ID PRODUTO"/>
-                <item value="ID UNIDADE"/>
-                <item value="ID GRUPO"/>
-                <item value="COMPOSTO"/>
+                <item value="PREÇO"/>
+                <item value="ID"/>
               </model>
               <preferredSize width="135" height="30"/>
             </properties>
@@ -79,7 +75,7 @@
               <text value="(F2) Editar"/>
             </properties>
           </component>
-          <component id="e62e6" class="javax.swing.JButton" binding="btnDelete">
+          <component id="e62e6" class="javax.swing.JButton" binding="btnRemove">
             <constraints/>
             <properties>
               <text value="(F3) Remover"/>

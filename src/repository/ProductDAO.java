@@ -165,7 +165,7 @@ public class ProductDAO {
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setInt(1, productId);
             try (ResultSet resultSet = preparedStatement.executeQuery()){
-                return getAllProducts(resultSet);
+                return getProducts(resultSet);
             }
         }catch (SQLException e) {
             throw new ExceptionProductDAO("error while retrieving product", e);
@@ -173,13 +173,14 @@ public class ProductDAO {
     }
 
     public static @NotNull Optional<ArrayList<Product>> getProductByReference(String productReference){
-        String sql = "SELECT * FROM product WHERE product_reference = ?";
+        String sql = "SELECT * FROM product WHERE product_reference LIKE ?";
+        productReference = "%" + productReference + "%";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, productReference);
             try (ResultSet resultSet = preparedStatement.executeQuery()){
-                return getAllProducts(resultSet);
+                return getProducts(resultSet);
             }
         }catch (SQLException e) {
             throw new ExceptionProductDAO("error while retrieving product", e);
@@ -187,13 +188,14 @@ public class ProductDAO {
     }
 
     public static @NotNull Optional<ArrayList<Product>> getProductByName(String productName){
-        String sql = "SELECT * FROM product WHERE product_name = ?";
+        String sql = "SELECT * FROM product WHERE product_name LIKE ?";
+        productName = "%" + productName + "%";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, productName);
             try (ResultSet resultSet = preparedStatement.executeQuery()){
-                return getAllProducts(resultSet);
+                return getProducts(resultSet);
             }
         }catch (SQLException e) {
             throw new ExceptionProductDAO("error while retrieving product", e);
@@ -201,21 +203,35 @@ public class ProductDAO {
     }
 
     public static @NotNull Optional<ArrayList<Product>> getProductByPrice(Double productPrice){
-        String sql = "SELECT * FROM product WHERE product_price = ?";
+        String sql = "SELECT * FROM product WHERE product_price LIKE ?";
+        String price = "%" + productPrice + "%";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setDouble(1, productPrice);
+            preparedStatement.setString(1, price);
             try (ResultSet resultSet = preparedStatement.executeQuery()){
-                return getAllProducts(resultSet);
+                return getProducts(resultSet);
             }
         }catch (SQLException e) {
             throw new ExceptionProductDAO("error while retrieving product", e);
         }
     }
 
+    public static @NotNull Optional<ArrayList<Product>> getAllProducts(){
+        String sql = "SELECT * FROM product";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getProducts(resultSet);
+            }
+        }catch (SQLException e) {
+            throw new ExceptionProductDAO("error while retrieving products", e);
+        }
+    }
+
     @NotNull
-    public static Optional<ArrayList<Product>> getAllProducts(@NotNull ResultSet resultSet) {
+    public static Optional<ArrayList<Product>> getProducts(@NotNull ResultSet resultSet) {
         ArrayList<Product> products = new ArrayList<>();
         try {
             while (resultSet.next()) {
@@ -228,7 +244,7 @@ public class ProductDAO {
                 product.setProductName(resultSet.getString("product_name"));
                 product.setProductPrice(resultSet.getDouble("product_price"));
                 product.setProductQuantity(resultSet.getDouble("product_quantity"));
-                product.setProductIsComposite(resultSet.getBoolean("product_is_compose"));
+                product.setProductIsComposite(resultSet.getBoolean("product_is_composite"));
 
                 if (productGroup.isPresent() && !productGroup.get().isEmpty()) {
                     product.setProductGroup(productGroup.get().getFirst());

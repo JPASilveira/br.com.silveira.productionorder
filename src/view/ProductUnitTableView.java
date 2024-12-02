@@ -87,7 +87,6 @@ public class ProductUnitTableView extends JFrame{
             }
         });
 
-
         //Ação do botão adicionar
         btnAdd.addActionListener(e -> {
             SwingUtilities.invokeLater(new Runnable()  {

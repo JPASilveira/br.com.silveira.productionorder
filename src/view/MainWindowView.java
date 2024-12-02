@@ -46,7 +46,13 @@ public class MainWindowView extends JFrame {
         pnlCenter.add(productionTableView.getPnlMain(), "Production");
         cardLayout.show(pnlCenter, "Empty");
 
-        btnProduct.addActionListener(e -> cardLayout.show(pnlCenter, "Product"));
+        btnProduct.addActionListener(e -> {
+            productTableView.searchData();
+            cardLayout.show(pnlCenter, "Product");
+            pnlCenter.revalidate();
+            pnlCenter.repaint();
+        });
+
         btnRegister.addActionListener(e -> cardLayout.show(pnlCenter, "Registration"));
         btnProduction.addActionListener(e -> cardLayout.show(pnlCenter, "Production"));
         btnStart.addActionListener(e -> cardLayout.show(pnlCenter, "Empty"));
@@ -64,6 +70,12 @@ public class MainWindowView extends JFrame {
         AppsStyle.styleButton(btnProduction);
         AppsStyle.styleButton(btnStart);
         AppsStyle.styleButton(btnContact);
+    }
+
+    public void reloadProductComponents(){
+        productTableView.searchData();
+        pnlCenter.revalidate();
+        pnlCenter.repaint();
     }
 
     public static void main(String[] args) {

@@ -7,8 +7,8 @@ public class Product {
     private Double productPrice;
     private Double productQuantity;
     private Boolean productIsComposite;
-    private ProductGroup productGroup;
     private ProductUnit productUnit;
+    private ProductGroup productGroup;
 
     public Product() {}
 

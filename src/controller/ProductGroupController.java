@@ -54,14 +54,12 @@ public class ProductGroupController {
         switch (cmbSearch) {
             case "Id":
                 try {
-                    ArrayList<ProductGroup> productGroups = new ArrayList<>();
                     result = ProductGroupDAO.getProductGroupById(Integer.parseInt(productGroupSearch));
                     if (result.isPresent()) {
                         data = result.get();
                         return convertProductListToTableData(data);
-                    } else {
-                        return new Object[0][0];
                     }
+                    return new Object[0][0];
                 } catch (NumberFormatException e) {
                     throw new ProductGroupControllerException("ID deve ser um número válido");
                 }
@@ -71,9 +69,9 @@ public class ProductGroupController {
                 if (result.isPresent()) {
                     data = result.get();
                     return convertProductListToTableData(data);
-                } else {
-                    return new Object[0][0];
                 }
+                return new Object[0][0];
+
 
             default:
                 result = ProductGroupDAO.getAllProductGroups();
@@ -82,6 +80,15 @@ public class ProductGroupController {
                     return convertProductListToTableData(data);
                 }
                 return new Object[0][0];
+        }
+    }
+
+    public static String getIdByName(String productGroupName){
+        try {
+            ProductGroup productGroup = ProductGroupDAO.getProductGroupByName(productGroupName).get().getFirst();
+            return String.valueOf(productGroup.getGroupId());
+        } catch (Exception e) {
+            throw new ProductGroupControllerException("Erro ao buscar ID do grupo");
         }
     }
 

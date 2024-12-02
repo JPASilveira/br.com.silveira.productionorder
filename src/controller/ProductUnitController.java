@@ -1,7 +1,10 @@
 package controller;
 
+import controller.exceptions.ProductGroupControllerException;
 import controller.exceptions.ProductUnitControllerException;
+import model.ProductGroup;
 import model.ProductUnit;
+import repository.ProductGroupDAO;
 import repository.ProductUnitDAO;
 
 import java.util.ArrayList;
@@ -97,6 +100,15 @@ public class ProductUnitController{
                     return convertProductUnitListToTableData(data);
                 }
                 return new Object[0][0];
+        }
+    }
+
+    public static String getIdByName(String productUnitName){
+        try {
+            ProductUnit productUnit = ProductUnitDAO.getProductUnitByName(productUnitName).get().getFirst();
+            return String.valueOf(productUnit.getUnitId());
+        } catch (Exception e) {
+            throw new ProductGroupControllerException("Erro ao buscar ID da unidade");
         }
     }
 
