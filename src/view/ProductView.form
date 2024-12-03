@@ -15,7 +15,7 @@
           <component id="16f4a" class="javax.swing.JLabel" binding="lblId">
             <constraints/>
             <properties>
-              <text value="ID: "/>
+              <text value=""/>
             </properties>
           </component>
         </children>

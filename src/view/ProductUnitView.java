@@ -103,7 +103,7 @@ public class ProductUnitView extends JFrame{
         AppsStyle.stylePanel(pnlCenterOne);
         AppsStyle.stylePanel(pnlCenterTwo);
         AppsStyle.stylePanel(pnlLow);
-        AppsStyle.styleLabel(lblId);
+        AppsStyle.styleLabelBold(lblId);
         AppsStyle.styleLabel(lblName);
         AppsStyle.styleTextField(txtName);
         AppsStyle.styleLabel(lblUnit);

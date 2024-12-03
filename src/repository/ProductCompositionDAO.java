@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ProductCompositionDAO {
-    private static void addProductComposition(ProductComposition productComposition) {
+    public static void addProductComposition(ProductComposition productComposition) {
         String sql = "INSERT INTO product_composition (product_composition_parent_product_id, product_composition_child_product_id, product_composition_quantity_used) VALUES(?,?,?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -23,7 +23,7 @@ public class ProductCompositionDAO {
         }
     }
 
-    private static void updateProductComposition(ProductComposition productComposition) {
+    public static void updateProductComposition(ProductComposition productComposition) {
         StringBuilder sql = new StringBuilder("UPDATE product_composition SET ");
         boolean hasProductCompositionParentProductId = false;
         boolean hasProductCompositionChildProductId = false;

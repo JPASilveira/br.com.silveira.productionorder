@@ -205,7 +205,7 @@ public class ProductView extends JFrame {
         AppsStyle.stylePanel(pnlSeven);
         AppsStyle.stylePanel(pnlSevenLeft);
         AppsStyle.stylePanel(pnlLow);
-        AppsStyle.styleLabel(lblId);
+        AppsStyle.styleLabelBold(lblId);
         AppsStyle.styleLabel(lblReference);
         AppsStyle.styleTextField(txtReference);
         AppsStyle.styleLabel(lblName);

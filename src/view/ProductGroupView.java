@@ -103,6 +103,7 @@ public class ProductGroupView extends JFrame {
         AppsStyle.stylePanel(pnlCenterOne);
         AppsStyle.stylePanel(pnlButton);
         AppsStyle.styleLabel(lblName);
+        AppsStyle.styleLabelBold(lblId);
         AppsStyle.styleTextField(txtName);
         AppsStyle.styleButton(btnReturn);
         AppsStyle.styleButton(btnSave);
