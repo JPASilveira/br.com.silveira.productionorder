@@ -1,11 +1,19 @@
 package repository;
 
+import model.Product;
 import model.ProductComposition;
+import org.jetbrains.annotations.NotNull;
 import repository.exceptions.ExceptionProductCompositionDAO;
+import repository.exceptions.ExceptionProductDAO;
+import repository.exceptions.ExceptionProductGroupDAO;
+import repository.exceptions.ExceptionProductUnitDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class ProductCompositionDAO {
     public static void addProductComposition(ProductComposition productComposition) {
@@ -89,4 +97,68 @@ public class ProductCompositionDAO {
             throw new ExceptionProductCompositionDAO("error while deleting product composition", e);
         }
     }
+
+    public static @NotNull Optional<ArrayList<ProductComposition>> getProductCompositionById(Integer productCompositionId) {
+        String sql = "SELECT * FROM product_composition WHERE product_composition_id = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, productCompositionId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getProductsComposition(resultSet);
+            }
+        }catch (SQLException e) {
+            throw new ExceptionProductCompositionDAO("error while getting product composition", e);
+        }
+    }
+
+    public static @NotNull Optional<ArrayList<ProductComposition>> getAllProductsComposition() {
+        String sql = "SELECT * FROM product_composition";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                return getProductsComposition(resultSet);
+            }
+        }catch (SQLException e) {
+            throw new ExceptionProductDAO("error while retrieving products composition", e);
+        }
+    }
+
+    @NotNull
+    public static Optional<ArrayList<ProductComposition>> getProductsComposition(@NotNull ResultSet resultSet) {
+        ArrayList<ProductComposition> productsComposition = new ArrayList<>();
+
+        try {
+            while (resultSet.next()) {
+                ProductComposition productComposition = new ProductComposition();
+                Optional<ArrayList<Product>> parentProduct = ProductDAO.getProductById(resultSet.getInt("PRODUCT_COMPOSITION_PARENT_PRODUCT_ID"));
+                Optional<ArrayList<Product>> childProduct = ProductDAO.getProductById(resultSet.getInt("PRODUCT_COMPOSITION_CHILD_PRODUCT_ID"));
+
+                productComposition.setProductCompositionId(resultSet.getInt("PRODUCT_COMPOSITION_ID"));
+                productComposition.setProductCompositionQuantityUsed(resultSet.getDouble("PRODUCT_COMPOSITION_QUANTITY_USED"));
+
+                if (parentProduct.isPresent() && !parentProduct.get().isEmpty()) {
+                    productComposition.setProductCompositionParentProduct(parentProduct.get().getFirst());
+                } else {
+                    throw new ExceptionProductGroupDAO("not found parent product", null);
+                }
+
+                if (childProduct.isPresent() && !childProduct.get().isEmpty()) {
+                    productComposition.setProductCompositionChildProduct(childProduct.get().getFirst());
+                } else {
+                    throw new ExceptionProductUnitDAO("not found product unit", null);
+                }
+
+                productsComposition.add(productComposition);
+            }
+
+            return productsComposition.isEmpty() ? Optional.empty() : Optional.of(productsComposition);
+
+        } catch (SQLException e) {
+            throw new ExceptionProductDAO("error while getting product composition", e);
+        }
+    }
+
+
 }
