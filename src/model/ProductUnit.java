@@ -1,7 +1,5 @@
 package model;
 
-import model.enums.EnumUnit;
-
 public class ProductUnit {
     private Integer unitId;
     private String unitName;

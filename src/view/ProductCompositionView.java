@@ -1,9 +1,11 @@
 package view;
 
+import controller.ProductCompositionController;
 import util.ResolutionCapture;
 import view.styles.AppsStyle;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class ProductCompositionView extends JFrame {
     ResolutionCapture resolutionCapture = new ResolutionCapture();
@@ -23,7 +25,7 @@ public class ProductCompositionView extends JFrame {
     private JButton btnSave;
     private JButton btnReturn;
 
-    public ProductCompositionView() {
+    public ProductCompositionView(boolean isUpdate, String productCompositionId, String parentProductId, String productChildId, String productChildProductQuantity) {
         setTitle("Subproduto");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
@@ -31,7 +33,65 @@ public class ProductCompositionView extends JFrame {
         setResizable(false);
         setContentPane(pnlMain);
         changeTheme();
+
+        if (isUpdate) {
+            btnSave.setText("(F6)Atualizar");
+            txtChildProduct.setText(productChildId);
+            txtChildProductQuantity.setText(productChildProductQuantity);
+        }
+
+        //Ação do botão atualizar
+        btnSave.addActionListener(e -> {
+            if (isUpdate) {
+                try {
+                    ProductCompositionController.updateProductComposition(productCompositionId, parentProductId, txtChildProduct.getText(), txtChildProductQuantity.getText());
+                    dispose();
+                } catch (Exception ex) {
+                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao editar");
+                }
+            }else {
+                try {
+                    ProductCompositionController.addProductComposition(parentProductId, txtChildProduct.getText(), txtChildProductQuantity.getText());
+                    dispose();
+                } catch (Exception ex) {
+                    AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao salvar");
+                }
+            }
+        });
+
+        //Atalho para salvar / autalizar (F6)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F6"), "saveProductComposition");
+        pnlMain.getActionMap().put("saveProductComposition", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSave.doClick();
+            }
+        });
+
+        //Ação do botão retornar
+        btnReturn.addActionListener(e -> {
+            dispose();
+        });
+
+        // Atalho para Retornar (Esc)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ESCAPE"), "return");
+        pnlMain.getActionMap().put("return", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnReturn.doClick();
+            }
+        });
+
+        configureEnterNavigation(txtChildProduct, txtChildProductQuantity);
+        configureEnterNavigation(txtChildProductQuantity, txtChildProduct);
+
         setVisible(true);
+    }
+
+    private void configureEnterNavigation(JTextField textField, JTextField nextField) {
+        textField.addActionListener(e -> nextField.requestFocusInWindow());
     }
 
     public void changeTheme(){
@@ -49,13 +109,5 @@ public class ProductCompositionView extends JFrame {
         AppsStyle.styleButton(btnChildProduct);
         AppsStyle.styleButton(btnSave);
         AppsStyle.styleButton(btnReturn);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new ProductCompositionView();
-            }
-        });
     }
 }

@@ -51,6 +51,7 @@ public class MainWindowView extends JFrame {
             cardLayout.show(pnlCenter, "Product");
             pnlCenter.revalidate();
             pnlCenter.repaint();
+            productTableView.requestFocusOnTable();
         });
 
         btnRegister.addActionListener(e -> cardLayout.show(pnlCenter, "Registration"));

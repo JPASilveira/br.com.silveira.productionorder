@@ -2,12 +2,7 @@ package debug;
 
 import controller.ProductUnitController;
 import model.ProductUnit;
-import model.enums.EnumUnit;
-import repository.ProductGroupDAO;
 import repository.ProductUnitDAO;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 public class DebugProductUnitDAO {
     public static void testUnit(String operation){

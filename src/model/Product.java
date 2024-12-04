@@ -78,4 +78,9 @@ public class Product {
     public void setProductUnit(ProductUnit productUnit) {
         this.productUnit = productUnit;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s", productName);
+    }
 }

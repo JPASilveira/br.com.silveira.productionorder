@@ -2,11 +2,10 @@ package controller;
 
 import controller.exceptions.ProductCompositionControllerException;
 import controller.exceptions.ProductControllerException;
-import model.Product;
 import model.ProductComposition;
 import repository.ProductCompositionDAO;
 import repository.ProductDAO;
-import util.BooleanString;
+
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -84,6 +83,7 @@ public class ProductCompositionController {
         try {
             ProductCompositionDAO.updateProductComposition(productComposition);
         }catch (Exception ex) {
+            ex.printStackTrace();
             throw new ProductCompositionControllerException("Falha ao editar subproduto");
         }
     }

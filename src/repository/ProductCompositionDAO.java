@@ -25,7 +25,7 @@ public class ProductCompositionDAO {
             preparedStatement.setInt(2, productComposition.getProductCompositionChildProduct().getProductId());
             preparedStatement.setDouble(3, productComposition.getProductCompositionQuantityUsed());
 
-            preparedStatement.executeUpdate(sql);
+            preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionProductCompositionDAO("error while adding product composition", e);
         }
@@ -80,7 +80,7 @@ public class ProductCompositionDAO {
             }
 
             preparedStatement.setInt(parameterIndex++, productComposition.getProductCompositionId());
-            preparedStatement.executeUpdate(sql.toString());
+            preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionProductCompositionDAO("error while updating product composition", e);
         }

@@ -158,6 +158,21 @@ public class ProductController {
         }
     }
 
+    public static void enableComposite(String productId) {
+        Product product = new Product();
+        try {
+            product.setProductId(Integer.parseInt(productId));
+        }catch (Exception ex) {
+            new ProductControllerException("Erro ao habilitar composição");
+        }
+        product.setProductIsComposite(true);
+        try {
+            ProductDAO.updateProduct(product);
+        }catch (Exception ex) {
+            new ProductControllerException("Erro ao habilitar composição");
+        }
+    }
+
     public static Object[][] searchProduct(String cmbSearch, String productSearch) {
         ArrayList<Product> data;
         Optional<ArrayList<Product>> result;

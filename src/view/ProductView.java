@@ -1,6 +1,7 @@
 package view;
 
 import controller.ProductController;
+import model.Product;
 import util.ResolutionCapture;
 import view.styles.AppsStyle;
 
@@ -161,13 +162,41 @@ public class ProductView extends JFrame {
         cbIsCompose.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(isUpdate){
-                    System.out.println("Update");
+                if(!isUpdate){
+                    AppsStyle.showErrorDialog("Salve o produto primeiro, depois edite para habilitar a composição","Habilitar composição");
+                    cbIsCompose.setSelected(false);
+                }else {
+                    try {
+                        ProductController.enableComposite(productId);
+                    }catch (Exception ex){
+                        AppsStyle.showErrorDialog(ex.getMessage(), "Erro ao habilitar composição");
+                    }
                 }
-                AppsStyle.showErrorDialog("Salve o produto primeiro, depois edite para habilitar a composição","Habilitar composição");
-                cbIsCompose.setSelected(false);
             }
         });
+
+        //Ação do botão de composição
+        btnCompose.addActionListener(e -> {
+            if(cbIsCompose.isSelected()){
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        new ProductCompositionTableView(productId);
+                    }
+                });
+            }else {
+                AppsStyle.showErrorDialog("A opção de produto composto deve estar selecionada", "Erro composição");
+            }
+        });
+        // Atalho para composição (F3)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F3"), "composition");
+        pnlMain.getActionMap().put("composition", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnCompose.doClick();
+            }
+        });
+
 
         configureEnterNavigation(txtReference, txtName);
         configureEnterNavigation(txtName, txtPrice);
@@ -190,7 +219,6 @@ public class ProductView extends JFrame {
     private void configureEnterNavigation(JTextField textField, JTextField nextField) {
         textField.addActionListener(e -> nextField.requestFocusInWindow());
     }
-
 
     public void changeTheme(){
         AppsStyle.stylePanel(pnlMain);

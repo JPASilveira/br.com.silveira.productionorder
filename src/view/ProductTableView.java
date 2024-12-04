@@ -238,4 +238,9 @@ public class ProductTableView extends JFrame {
     public JPanel getPnlMain() {
         return pnlMain;
     }
+
+    public void requestFocusOnTable() {
+        SwingUtilities.invokeLater(() -> tbeItens.requestFocusInWindow());
+    }
+
 }
