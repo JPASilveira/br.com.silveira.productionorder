@@ -4,6 +4,7 @@ import controller.ProductController;
 import controller.ProductGroupController;
 import controller.ProductUnitController;
 import util.BooleanString;
+import util.ResolutionCapture;
 import view.styles.AppsStyle;
 
 import javax.swing.*;
@@ -26,6 +27,8 @@ public class ProductTableView extends JFrame {
     private JButton btnRemove;
     private JButton btnSearch;
     private JLabel lblFilter;
+    private JPanel pnlLowRight;
+    private JPanel pnlLowLeft;
 
     String[] columnNames = {"ID", "REFERÊNCIA", "NOME", "PREÇO", "QUANTIDADE","UN", "GRUPO", "COMPOSTO"};
     Object[][] data;
@@ -194,10 +197,233 @@ public class ProductTableView extends JFrame {
         tbeItens.requestFocus();
     }
 
+    public ProductTableView(JTextField txtSearch) {
+        JButton btnSelect = new JButton("(F6)Selecionar");
+        JButton btnReturn = new JButton("(ESC)Retornar");
+        AppsStyle.styleButton(btnSelect);
+        AppsStyle.styleButton(btnReturn);
+
+        ResolutionCapture resolutionCapture = new ResolutionCapture();
+        setTitle("Produtos");
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
+        setContentPane(pnlMain);
+        setResizable(false);
+        setLocationRelativeTo(null);
+
+        changeTheme();
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        tbeItens.setModel(model);
+
+        //Ação do botão buscar
+        btnSearch.addActionListener(e -> {
+            searchData();
+            tbeItens.requestFocus();
+        });
+
+        //Focar no combox dos filtros
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F4"), "focusFilter");
+        pnlMain.getActionMap().put("focusFilter", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cmbFilter.requestFocus();
+            }
+        });
+
+        //Focar no Campo de Busca (F5)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F5"), "focusSearch");
+        pnlMain.getActionMap().put("focusSearch", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtSearch.requestFocus();
+            }
+        });
+
+        //Executar Busca
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ENTER"), "search");
+        pnlMain.getActionMap().put("search", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSearch.doClick();
+                tbeItens.requestFocus();
+            }
+        });
+
+        //Ação do botão adicionar
+        btnAdd.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                ProductView productView = new ProductView(false, "", "", "", "", "", "", "", false);
+
+                productView.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        searchData();
+                        tbeItens.requestFocus();
+                    }
+                });
+            });
+        });
+
+        //Atalho para adicionar unidade (F1)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F1"), "addProduct");
+        pnlMain.getActionMap().put("addProduct", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnAdd.doClick();
+            }
+        });
+
+        //Ação do botão Editar
+        btnEdit.addActionListener(e -> {
+            int selectedRow = tbeItens.getSelectedRow();
+
+            if (selectedRow != -1) {
+                String id = tbeItens.getValueAt(selectedRow, 0).toString();
+                String reference = tbeItens.getValueAt(selectedRow, 1).toString();
+                String name = tbeItens.getValueAt(selectedRow, 2).toString();
+                String price = tbeItens.getValueAt(selectedRow, 3).toString();
+                String quantity = tbeItens.getValueAt(selectedRow, 4).toString();
+                String unit;
+                String group;
+                try {
+                    unit = ProductUnitController.getIdByName(tbeItens.getValueAt(selectedRow, 5).toString());
+                } catch (Exception ex) {
+                    unit = "0";
+                    AppsStyle.showErrorDialog("Erro ao retornar UN, Colocado 0 no campo", "Erro ao retornar UN");
+                }
+
+                try {
+                    group = ProductGroupController.getIdByName(tbeItens.getValueAt(selectedRow, 6).toString());
+                }catch (Exception ex) {
+                    group = "0";
+                    AppsStyle.showErrorDialog("Erro ao retornar Grupo, Colocado 0 no campo", "Erro ao retornar Grupo");
+                }
+
+                boolean isCompose = BooleanString.toBoolean(tbeItens.getValueAt(selectedRow, 7).toString());
+
+                String finalGroup = group;
+                String finalUnit = unit;
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ProductView productView = new ProductView(true, id, reference, name, price, quantity, finalGroup, finalUnit, isCompose);
+
+                        productView.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosed(WindowEvent e) {
+                                searchData();
+                                tbeItens.requestFocus();
+                            }
+                        });
+                    }
+                } );
+            } else {
+                AppsStyle.showErrorDialog("Nenhum produto selecionado", "Erro de Busca");
+            }
+        });
+
+        //Atalho para editar produto (F2)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F2"), "productEdit");
+        pnlMain.getActionMap().put("productEdit", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnEdit.doClick();
+            }
+        });
+
+        //Ação do botão Remover
+        btnRemove.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tbeItens.getSelectedRow();
+
+                if (selectedRow != -1) {
+                    String id = tbeItens.getValueAt(selectedRow, 0).toString();
+                    ProductController.deleteProduct(id);
+                    searchData();
+                    tbeItens.requestFocus();
+                }else {
+                    AppsStyle.showErrorDialog("Nenhum produto selecionado", "Erro ao deletar");
+                }
+            }
+        });
+
+        //Atalho para remover produto (F3)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F3"), "removeProduct");
+        pnlMain.getActionMap().put("removeProduct", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnRemove.doClick();
+                tbeItens.requestFocus();
+            }
+        });
+
+        //Ação do botão selecionar
+        btnSelect.addActionListener(e -> {
+            int selectedRow = tbeItens.getSelectedRow();
+
+            if (selectedRow != -1){
+                String id = tbeItens.getValueAt(selectedRow, 0).toString();
+                txtSearch.setText(id);
+                dispose();
+            }
+        });
+
+        //Atalho para selecionar (F6)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F6"), "selectProduct");
+        pnlMain.getActionMap().put("selectProduct", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSelect.doClick();
+            }
+        });
+
+        //Ação do botão retornar
+        btnReturn.addActionListener(e -> {
+            dispose();
+        });
+
+        //Atalho para retornar (ESC)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("ESCAPE"), "return");
+        pnlMain.getActionMap().put("return", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnReturn.doClick();
+            }
+        });
+
+        addWindowFocusListener(new WindowAdapter() {
+            @Override
+            public void windowGainedFocus(WindowEvent e) {
+                searchData();
+                tbeItens.requestFocus();
+            }
+        });
+
+        pnlLowLeft.add(btnAdd);
+        pnlLowLeft.add(btnEdit);
+        pnlLowLeft.add(btnRemove);
+        pnlLowRight.add(btnReturn);
+        pnlLowRight.add(btnSelect);
+
+        setVisible(true);
+    }
+
 
     public void changeTheme(){
         AppsStyle.stylePanel(pnlTop);
         AppsStyle.stylePanel(pnlLow);
+        AppsStyle.stylePanel(pnlLowLeft);
+        AppsStyle.stylePanel(pnlLowRight);
         AppsStyle.styleScrollPanel(scpCenter);
         AppsStyle.styleTable(tbeItens);
         AppsStyle.styleComboBox(cmbFilter);

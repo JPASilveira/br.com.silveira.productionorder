@@ -34,6 +34,26 @@ public class ProductCompositionView extends JFrame {
         setContentPane(pnlMain);
         changeTheme();
 
+        //Ação do botão busca
+        btnChildProduct.addActionListener(e ->{
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new ProductTableView(txtChildProduct);
+                }
+            });
+        });
+
+        //Atalho para buscar (F1)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F1"), "search");
+        pnlMain.getActionMap().put("search", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnChildProduct.doClick();
+            }
+        });
+
         if (isUpdate) {
             btnSave.setText("(F6)Atualizar");
             txtChildProduct.setText(productChildId);

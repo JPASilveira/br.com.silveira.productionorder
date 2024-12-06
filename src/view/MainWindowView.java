@@ -5,8 +5,6 @@ import view.styles.AppsStyle;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainWindowView extends JFrame {
     ResolutionCapture resolutionCapture = new ResolutionCapture();
