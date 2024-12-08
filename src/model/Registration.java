@@ -1,14 +1,14 @@
 package model;
 
-import model.enums.EnumRegistration;
-
 public class Registration {
     private Integer registrationId;
-    private EnumRegistration registrationType;
+    private String registrationType;
     private String registrationName;
+    private String registrationFantasyName;
     private String registrationDocument;
+    private String registrationIE;
     private String registrationContactNumber;
-
+    private String registrationEmail;
     private RegistrationAddress registrationAddress;
 
     public Registration() {}
@@ -22,13 +22,10 @@ public class Registration {
     }
 
     public String getRegistrationType() {
-        if(this.registrationType == null){
-            return null;
-        }
-        return this.registrationType.name();
+        return registrationType;
     }
 
-    public void setRegistrationType(EnumRegistration registrationType) {
+    public void setRegistrationType(String registrationType) {
         this.registrationType = registrationType;
     }
 
@@ -40,6 +37,14 @@ public class Registration {
         this.registrationName = registrationName;
     }
 
+    public String getRegistrationFantasyName() {
+        return registrationFantasyName;
+    }
+
+    public void setRegistrationFantasyName(String registrationFantasyName) {
+        this.registrationFantasyName = registrationFantasyName;
+    }
+
     public String getRegistrationDocument() {
         return registrationDocument;
     }
@@ -48,12 +53,28 @@ public class Registration {
         this.registrationDocument = registrationDocument;
     }
 
+    public String getRegistrationIE() {
+        return registrationIE;
+    }
+
+    public void setRegistrationIE(String registrationIE) {
+        this.registrationIE = registrationIE;
+    }
+
     public String getRegistrationContactNumber() {
         return registrationContactNumber;
     }
 
     public void setRegistrationContactNumber(String registrationContactNumber) {
         this.registrationContactNumber = registrationContactNumber;
+    }
+
+    public String getRegistrationEmail() {
+        return registrationEmail;
+    }
+
+    public void setRegistrationEmail(String registrationEmail) {
+        this.registrationEmail = registrationEmail;
     }
 
     public RegistrationAddress getRegistrationAddress() {

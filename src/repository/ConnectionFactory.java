@@ -25,11 +25,12 @@ public class ConnectionFactory {
         String createTableRegistrationAddress = """
         CREATE TABLE IF NOT EXISTS registration_address (
         address_id INT AUTO_INCREMENT PRIMARY KEY,
-        address_street VARCHAR(255) NOT NULL,
+        address_cep VARCHAR(10) NOT NULL,
+        address_street VARCHAR(100) NOT NULL,
         address_number VARCHAR(10) NOT NULL,
         address_neighborhood VARCHAR(100) NOT NULL,
-        address_city VARCHAR(100) NOT NULL,
-        address_state VARCHAR(2) NOT NULL
+        address_city VARCHAR(60) NOT NULL,
+        address_state VARCHAR(20) NOT NULL
         );
         """;
 
@@ -37,9 +38,12 @@ public class ConnectionFactory {
         CREATE TABLE IF NOT EXISTS registration (
         registration_id INT AUTO_INCREMENT PRIMARY KEY,
         registration_type VARCHAR(50) NOT NULL,
-        registration_name VARCHAR(255) NOT NULL,
-        registration_document VARCHAR(100) NOT NULL,
-        registration_contact_number VARCHAR(100) NOT NULL,
+        registration_name VARCHAR(100) NOT NULL,
+        registration_fantasy_name VARCHAR(100) NOT NULL,
+        registration_document VARCHAR(20) NOT NULL,
+        registration_ie VARCHAR(20) NOT NULL,
+        registration_contact_number VARCHAR(20) NOT NULL,
+        registration_email VARCHAR(50) NOT NULL,
         registration_address_id INT,
         CONSTRAINT fk_registration_address FOREIGN KEY (registration_address_id) REFERENCES registration_address(address_id)
         );
@@ -48,7 +52,7 @@ public class ConnectionFactory {
         String createTableProductUnit = """
         CREATE TABLE IF NOT EXISTS product_unit (
         unit_id INT AUTO_INCREMENT PRIMARY KEY,
-        unit_name VARCHAR(255) NOT NULL,
+        unit_name VARCHAR(100) NOT NULL,
         unit_acronym VARCHAR(50) NOT NULL
         );
         """;
@@ -64,7 +68,7 @@ public class ConnectionFactory {
         CREATE TABLE IF NOT EXISTS product (
         product_id INT AUTO_INCREMENT PRIMARY KEY,
         product_reference VARCHAR(50) NOT NULL,
-        product_name VARCHAR(255) NOT NULL,
+        product_name VARCHAR(100) NOT NULL,
         product_price DECIMAL(10, 2) NOT NULL,
         product_quantity DECIMAL(10, 2) NOT NULL,
         product_is_composite BOOLEAN NOT NULL,

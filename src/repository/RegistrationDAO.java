@@ -9,15 +9,18 @@ import java.sql.SQLException;
 
 public class RegistrationDAO {
     public static void registrationAdd(Registration registration) {
-        String sql = "INSERT INTO registration (registration_type, registration_name, registration_document, registration_contact_number, registration_address_ID) values(?,?,?,?,?)";
+        String sql = "INSERT INTO registration (registration_type, registration_name, registration_fantasy_name, registration_document, registration_ie, registration_contact_number, registration_email, registration_address_ID) values(?,?,?,?,?,?,?,?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, registration.getRegistrationType());
             preparedStatement.setString(2, registration.getRegistrationName());
-            preparedStatement.setString(3, registration.getRegistrationDocument());
-            preparedStatement.setString(4, registration.getRegistrationContactNumber());
-            preparedStatement.setInt(5,registration.getRegistrationAddress().getAddressId());
+            preparedStatement.setString(3, registration.getRegistrationFantasyName());
+            preparedStatement.setString(4, registration.getRegistrationDocument());
+            preparedStatement.setString(5, registration.getRegistrationIE());
+            preparedStatement.setString(6, registration.getRegistrationContactNumber());
+            preparedStatement.setString(7, registration.getRegistrationEmail());
+            preparedStatement.setInt(8,registration.getRegistrationAddress().getAddressId());
             preparedStatement.executeUpdate();
         }catch (SQLException e) {
             throw new ExceptionRegistrationDAO("error while adding registration", e);
@@ -28,8 +31,11 @@ public class RegistrationDAO {
         StringBuilder sql = new StringBuilder("UPDATE registration SET ");
         boolean hasRegistrationType = false;
         boolean hasRegistrationName = false;
+        boolean hasRegistrationFantasyName = false;
         boolean hasRegistrationDocument = false;
+        boolean hasRegistrationIE = false;
         boolean hasRegistrationContactNumber = false;
+        boolean hasRegistrationEmail = false;
         boolean hasRegistrationAddressId = false;
         boolean isFirst = true;
 
@@ -48,6 +54,15 @@ public class RegistrationDAO {
             isFirst = false;
         }
 
+        if (registration.getRegistrationFantasyName() != null) {
+            if (!isFirst) {
+                sql.append(", ");
+            }
+            sql.append("registration_fantasy_name = ?");
+            hasRegistrationFantasyName = true;
+            isFirst = false;
+        }
+
         if (registration.getRegistrationDocument() != null) {
             if (!isFirst) {
                 sql.append(", ");
@@ -57,12 +72,30 @@ public class RegistrationDAO {
             isFirst = false;
         }
 
+        if (registration.getRegistrationIE() != null) {
+            if (!isFirst) {
+                sql.append(", ");
+            }
+            sql.append("registration_ie = ?");
+            hasRegistrationIE = true;
+            isFirst = false;
+        }
+
         if (registration.getRegistrationContactNumber() != null) {
             if (!isFirst) {
                 sql.append(", ");
             }
             sql.append("registration_contact_number = ?");
             hasRegistrationContactNumber = true;
+            isFirst = false;
+        }
+
+        if (registration.getRegistrationEmail() != null) {
+            if (!isFirst) {
+                sql.append(", ");
+            }
+            sql.append("registration_email = ?");
+            hasRegistrationEmail = true;
             isFirst = false;
         }
 
@@ -88,8 +121,24 @@ public class RegistrationDAO {
                 preparedStatement.setString(parameterIndex++, registration.getRegistrationName());
             }
 
+            if (hasRegistrationFantasyName) {
+                preparedStatement.setString(parameterIndex++, registration.getRegistrationFantasyName());
+            }
+
             if (hasRegistrationDocument) {
                 preparedStatement.setString(parameterIndex, registration.getRegistrationDocument());
+            }
+
+            if (hasRegistrationIE) {
+                preparedStatement.setString(parameterIndex++, registration.getRegistrationIE());
+            }
+
+            if (hasRegistrationContactNumber) {
+                preparedStatement.setString(parameterIndex++, registration.getRegistrationContactNumber());
+            }
+
+            if (hasRegistrationEmail) {
+                preparedStatement.setString(parameterIndex++, registration.getRegistrationEmail());
             }
 
             if (hasRegistrationAddressId) {

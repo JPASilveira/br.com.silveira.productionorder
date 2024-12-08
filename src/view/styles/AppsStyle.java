@@ -71,6 +71,7 @@ public class AppsStyle {
         table.setFillsViewportHeight(true);
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         table.setDefaultRenderer(Object.class, centerRenderer);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         InputMap inputMap = table.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke("F1"), "none");
         inputMap.put(KeyStroke.getKeyStroke("F2"), "none");

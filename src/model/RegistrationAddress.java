@@ -2,6 +2,7 @@ package model;
 
 public class RegistrationAddress {
     private Integer addressId;
+    private String addressCep;
     private String addressStreet;
     private String addressNumber;
     private String addressNeighborhood;
@@ -16,6 +17,14 @@ public class RegistrationAddress {
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
+    }
+
+    public String getAddressCep() {
+        return addressCep;
+    }
+
+    public void setAddressCep(String addressCep) {
+        this.addressCep = addressCep;
     }
 
     public String getAddressStreet() {

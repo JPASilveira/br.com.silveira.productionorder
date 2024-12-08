@@ -66,7 +66,6 @@ public class ProductController {
         try {
             ProductDAO.addProduct(product);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new ProductControllerException("Erro ao adicionar um produto");
         }
 
