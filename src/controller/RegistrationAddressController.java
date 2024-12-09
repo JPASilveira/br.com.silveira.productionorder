@@ -173,6 +173,16 @@ public class RegistrationAddressController {
         }
     }
 
+    public static String returnLastIdRegister(){
+        try {
+            Optional<ArrayList<RegistrationAddress>> data = RegistrationAddressDAO.getAllRegistrationAddresses();
+            ArrayList<RegistrationAddress> registrationAddress = data.get();
+            return String.valueOf(registrationAddress.get(registrationAddress.size() - 1).getAddressId());
+        }catch (Exception e) {
+            throw new RegistrationAddressException("Erro ao retornar id do endereço");
+        }
+    }
+
     private static Object[][] convertRegistrationAddressToTableData(ArrayList<RegistrationAddress> addresses) {
         Object[][] data = new Object[addresses.size()][7];
 

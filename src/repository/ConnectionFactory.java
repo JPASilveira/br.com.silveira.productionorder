@@ -15,6 +15,7 @@ public class ConnectionFactory {
     public static Connection getConnection() {
         try {
             Class.forName("org.h2.Driver");
+
             return DriverManager.getConnection(URL, USER, PASS);
         } catch (ClassNotFoundException | SQLException e) {
             throw new ExceptionConnectionFactory("Error creating connection", e);
@@ -27,7 +28,7 @@ public class ConnectionFactory {
         address_id INT AUTO_INCREMENT PRIMARY KEY,
         address_cep VARCHAR(10) NOT NULL,
         address_street VARCHAR(100) NOT NULL,
-        address_number VARCHAR(10) NOT NULL,
+        address_number VARCHAR(50) NOT NULL,
         address_neighborhood VARCHAR(100) NOT NULL,
         address_city VARCHAR(60) NOT NULL,
         address_state VARCHAR(20) NOT NULL

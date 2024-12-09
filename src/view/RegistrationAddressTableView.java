@@ -35,7 +35,7 @@ public class RegistrationAddressTableView extends JFrame {
     private DefaultTableModel model;
     private Object[][] data;
 
-    public RegistrationAddressTableView() {
+    public RegistrationAddressTableView(JTextField idReturn) {
         ResolutionCapture resolutionCapture = new ResolutionCapture();
         setTitle("Endereços");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -106,8 +106,8 @@ public class RegistrationAddressTableView extends JFrame {
 
         //Atalho para adicionar unidade (F1)
         pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-                .put(KeyStroke.getKeyStroke("F1"), "addProduct");
-        pnlMain.getActionMap().put("addProduct", new AbstractAction() {
+                .put(KeyStroke.getKeyStroke("F1"), "addressAdd");
+        pnlMain.getActionMap().put("addressAdd", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 btnAdd.doClick();
@@ -147,8 +147,8 @@ public class RegistrationAddressTableView extends JFrame {
 
         //Atalho para editar produto (F2)
         pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-                .put(KeyStroke.getKeyStroke("F2"), "productEdit");
-        pnlMain.getActionMap().put("productEdit", new AbstractAction() {
+                .put(KeyStroke.getKeyStroke("F2"), "addressEdit");
+        pnlMain.getActionMap().put("addressEdit", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 btnEdit.doClick();
@@ -172,14 +172,35 @@ public class RegistrationAddressTableView extends JFrame {
             }
         });
 
-        //Atalho para remover produto (F3)
+        //Atalho para remover (F3)
         pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-                .put(KeyStroke.getKeyStroke("F3"), "removeProduct");
-        pnlMain.getActionMap().put("removeProduct", new AbstractAction() {
+                .put(KeyStroke.getKeyStroke("F3"), "removeAddress");
+        pnlMain.getActionMap().put("removeAddress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 btnRemove.doClick();
                 tbeItens.requestFocus();
+            }
+        });
+
+        //Ação do botão selecionar
+        btnSelect.addActionListener(e -> {
+            int selectedRow = tbeItens.getSelectedRow();
+
+            if (selectedRow != -1) {
+                String id = tbeItens.getValueAt(selectedRow, 0).toString();
+                idReturn.setText(id);
+            }
+            dispose();
+        });
+
+        //Atalho para selecionar (F6)
+        pnlMain.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("F6"), "selectAddress");
+        pnlMain.getActionMap().put("selectAddress", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnSelect.doClick();
             }
         });
 
@@ -205,6 +226,8 @@ public class RegistrationAddressTableView extends JFrame {
                 tbeItens.requestFocus();
             }
         });
+
+        setVisible(true);
     }
 
 
@@ -248,13 +271,5 @@ public class RegistrationAddressTableView extends JFrame {
         AppsStyle.styleButton(btnSelect);
         AppsStyle.styleButton(btnReturn);
         AppsStyle.styleTable(tbeItens);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrationAddressTableView().setVisible(true);
-            }
-        });
     }
 }

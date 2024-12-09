@@ -49,15 +49,17 @@ public class RegistrationAddressView extends JFrame {
         setResizable(false);
         changeTheme();
 
+
+        lblId.setText("ID: " + idAddress);
+        txtCep.setText(cepAddress);
+        txtStreet.setText(streetAddress);
+        txtNumber.setText(numberAddress);
+        txtNeighborhood.setText(neighborhoodAddress);
+        txtCity.setText(cityAddress);
+        cmbState.setSelectedItem(stateAddress);
+
         if (isUpdate) {
             btnSave.setText("(F6) Atualizar");
-            lblId.setText("ID: " + idAddress);
-            txtCep.setText(cepAddress);
-            txtStreet.setText(streetAddress);
-            txtNumber.setText(numberAddress);
-            txtNeighborhood.setText(neighborhoodAddress);
-            txtCity.setText(cityAddress);
-            cmbState.setSelectedItem(stateAddress);
         }
 
         changeTheme();
@@ -70,7 +72,7 @@ public class RegistrationAddressView extends JFrame {
                 AppsStyle.showErrorDialog("O CEP deve ser formado apenas de números", "CEP inválido");
             } else {
                 String originalText = btnCep.getText();
-                btnCep.setText("Carregando...");
+                btnCep.setText("Aguarde ...");
                 btnCep.setEnabled(false);
 
                 new Thread(() -> {

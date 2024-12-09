@@ -43,7 +43,8 @@
               <component id="a4030" class="javax.swing.JTextField" binding="txtCep">
                 <constraints/>
                 <properties>
-                  <preferredSize width="350" height="36"/>
+                  <opaque value="true"/>
+                  <preferredSize width="216" height="36"/>
                 </properties>
               </component>
               <component id="aa8c8" class="javax.swing.JButton" binding="btnCep">
