@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.ProductUnitTableView">
+  <grid id="27dc6" binding="pnlMain" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="664" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="8ca0e" binding="pnlTop" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <component id="2ae33" class="javax.swing.JLabel" binding="lblSearch">
+            <constraints/>
+            <properties>
+              <text value="(F4)"/>
+            </properties>
+          </component>
+          <component id="84182" class="javax.swing.JComboBox" binding="cmbSearch">
+            <constraints/>
+            <properties>
+              <model>
+                <item value="NOME"/>
+                <item value="UN"/>
+                <item value="ID"/>
+              </model>
+              <popupVisible value="false"/>
+              <preferredSize width="135" height="30"/>
+            </properties>
+          </component>
+          <component id="24e1e" class="javax.swing.JTextField" binding="txtSearch">
+            <constraints/>
+            <properties>
+              <preferredSize width="200" height="24"/>
+            </properties>
+          </component>
+          <component id="2bec5" class="javax.swing.JButton" binding="btnSearch">
+            <constraints/>
+            <properties>
+              <preferredSize width="200" height="23"/>
+              <text value="(F5) Pesquisar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <scrollpane id="a5301" binding="scpCenter">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <component id="fa985" class="javax.swing.JTable" binding="tbeItens">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <grid id="8180d" binding="pnlLow" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <grid id="ce341" binding="pnlLowLeft" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="867a0" class="javax.swing.JButton" binding="btnAdd">
+                <constraints/>
+                <properties>
+                  <text value="(F1) Adicionar"/>
+                </properties>
+              </component>
+              <component id="97f72" class="javax.swing.JButton" binding="btnEdit">
+                <constraints/>
+                <properties>
+                  <text value="(F2) Editar"/>
+                </properties>
+              </component>
+              <component id="118b3" class="javax.swing.JButton" binding="btnRemove">
+                <constraints/>
+                <properties>
+                  <text value="(F3) Remover"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <hspacer id="c70ad">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <grid id="65f97" binding="pnlLowRight" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="806f7" class="javax.swing.JButton" binding="btnReturn">
+                <constraints/>
+                <properties>
+                  <text value="(ESC) Retornar"/>
+                </properties>
+              </component>
+              <component id="a6887" class="javax.swing.JButton" binding="btnSelect">
+                <constraints/>
+                <properties>
+                  <text value="(F6) Selecionar"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

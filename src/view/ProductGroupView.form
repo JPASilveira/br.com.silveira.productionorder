@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.ProductGroupView">
+  <grid id="27dc6" binding="pnlMain" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="d753" binding="pnlTop" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <component id="3f77c" class="javax.swing.JLabel" binding="lblId">
+            <constraints/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="5b07e" binding="pnlCenter" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="26076" binding="pnlCenterOne" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="962b8" class="javax.swing.JLabel" binding="lblName">
+                <constraints/>
+                <properties>
+                  <text value="Nome:"/>
+                </properties>
+              </component>
+              <component id="abd03" class="javax.swing.JTextField" binding="txtName">
+                <constraints/>
+                <properties>
+                  <preferredSize width="300" height="30"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <vspacer id="c946f">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <grid id="94041" binding="pnlButton" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="line"/>
+            <children>
+              <component id="4d543" class="javax.swing.JButton" binding="btnReturn">
+                <constraints/>
+                <properties>
+                  <text value="(ESC) Retornar"/>
+                </properties>
+              </component>
+              <component id="1bd7" class="javax.swing.JButton" binding="btnSave">
+                <constraints/>
+                <properties>
+                  <text value="(F6) Salvar"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="xhtmlrenderer.flying.saucer.pdf" type="repository">
+    <properties maven-id="org.xhtmlrenderer:flying-saucer-pdf:9.11.2" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/xhtmlrenderer/flying-saucer-pdf/9.11.2/flying-saucer-pdf-9.11.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/xhtmlrenderer/flying-saucer-core/9.11.2/flying-saucer-core-9.11.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/librepdf/openpdf/2.0.3/openpdf-2.0.3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/xhtmlrenderer/flying-saucer-pdf/9.11.2/flying-saucer-pdf-9.11.2-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/xhtmlrenderer/flying-saucer-core/9.11.2/flying-saucer-core-9.11.2-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/librepdf/openpdf/2.0.3/openpdf-2.0.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

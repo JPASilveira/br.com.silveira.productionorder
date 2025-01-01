@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.ProductUnitView">
+  <grid id="27dc6" binding="pnlMain" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="aa23f" binding="pnlTop" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <component id="f71fa" class="javax.swing.JLabel" binding="lblId">
+            <constraints/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="6fdad" binding="pnlCenter" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <grid id="4e2cd" binding="pnlCenterOne" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="d8b4a" class="javax.swing.JLabel" binding="lblName">
+                <constraints/>
+                <properties>
+                  <preferredSize width="80" height="17"/>
+                  <text value="Nome: "/>
+                </properties>
+              </component>
+              <component id="c9b6b" class="javax.swing.JTextField" binding="txtName">
+                <constraints/>
+                <properties>
+                  <preferredSize width="300" height="30"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <vspacer id="451ed">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <grid id="d1d48" binding="pnlCenterTwo" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="dcf66" class="javax.swing.JLabel" binding="lblUnit">
+                <constraints/>
+                <properties>
+                  <preferredSize width="80" height="17"/>
+                  <text value="Sigla:"/>
+                </properties>
+              </component>
+              <component id="e5b5b" class="javax.swing.JTextField" binding="txtUnit">
+                <constraints/>
+                <properties>
+                  <preferredSize width="300" height="30"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="fdc19" binding="pnlLow" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="line"/>
+        <children>
+          <component id="e8e7c" class="javax.swing.JButton" binding="btnReturn">
+            <constraints/>
+            <properties>
+              <text value="(ESC) Retornar"/>
+            </properties>
+          </component>
+          <component id="44892" class="javax.swing.JButton" binding="btnSave">
+            <constraints/>
+            <properties>
+              <text value="(F6) Salvar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="br.com.silveira.productionorder:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/br_com_silveira_productionorder_jar</output-path>
+    <root id="archive" name="br.com.silveira.productionorder.jar">
+      <element id="module-output" name="br.com.silveira.productionorder" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/h2database/h2/2.3.230/h2-2.3.230.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.18.2/jackson-databind-2.18.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.18.2/jackson-annotations-2.18.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.18.2/jackson-core-2.18.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/realityforge/org/jetbrains/annotations/org.jetbrains.annotations/1.7.0/org.jetbrains.annotations-1.7.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/xhtmlrenderer/flying-saucer-pdf/9.11.2/flying-saucer-pdf-9.11.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/xhtmlrenderer/flying-saucer-core/9.11.2/flying-saucer-core-9.11.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/librepdf/openpdf/2.0.3/openpdf-2.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-simple/2.0.16/slf4j-simple-2.0.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
