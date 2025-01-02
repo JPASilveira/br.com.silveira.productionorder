@@ -45,8 +45,7 @@ public class ProductTableView extends JFrame {
         setTitle("Produtos");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setContentPane(pnlMain);
-        setSize(resolutionCapture.getWidth() / 2, resolutionCapture.getHeight() / 2);
-        setResizable(false);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
 
         JButton btnSelect = new JButton("(F6)Selecionar");

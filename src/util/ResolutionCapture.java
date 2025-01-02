@@ -21,4 +21,11 @@ public class ResolutionCapture {
     public int getHeight() {
         return height;
     }
+
+    public int getMinWidth() {
+        return (int) (width * 0.9);
+    }
+    public int getMinHeight() {
+        return (int) (height * 0.9);
+    }
 }

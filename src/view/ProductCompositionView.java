@@ -29,9 +29,8 @@ public class ProductCompositionView extends JFrame {
     public ProductCompositionView(boolean isUpdate, String productCompositionId, String parentProductId, String productChildId, String productChildProductQuantity) {
         setTitle("Subproduto");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
-        setResizable(false);
         setContentPane(pnlMain);
         changeTheme();
 

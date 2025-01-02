@@ -37,9 +37,8 @@ public class ProductionView extends JFrame {
         setTitle("Ordem de produção");
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
-        setResizable(false);
         changeTheme();
 
         txtRequester.setText(requesterId);

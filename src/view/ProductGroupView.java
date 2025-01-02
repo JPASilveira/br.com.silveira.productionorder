@@ -24,9 +24,8 @@ public class ProductGroupView extends JFrame {
     public ProductGroupView(boolean isUpdate, String productGroupId, String productGroupName) throws HeadlessException {
         setTitle("Grupo");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(resolutionCapture.getWidth() / 2, resolutionCapture.getHeight() / 2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
-        setResizable(false);
         setContentPane(pnlMain);
         changeTheme();
 

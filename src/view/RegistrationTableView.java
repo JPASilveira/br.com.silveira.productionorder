@@ -43,8 +43,7 @@ public class RegistrationTableView extends JFrame {
         setTitle("Registros");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setContentPane(pnlMain);
-        setSize(resolutionCapture.getWidth() / 2, resolutionCapture.getHeight() / 2);
-        setResizable(false);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
 
         JButton btnSelect = new JButton("(F6)Selecionar");
@@ -95,8 +94,7 @@ public class RegistrationTableView extends JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         ResolutionCapture resolutionCapture = new ResolutionCapture();
-        setSize(resolutionCapture.getWidth() / 2, resolutionCapture.getHeight() / 2);
-        setResizable(false);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
 
         changeTheme();
         DefaultTableModel model = new DefaultTableModel(data, columnNames);

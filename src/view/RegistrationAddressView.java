@@ -43,9 +43,8 @@ public class RegistrationAddressView extends JFrame {
         setTitle("Endereço");
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(resolutionCapture.getWidth() / 2, resolutionCapture.getHeight() / 2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
-        setResizable(false);
         changeTheme();
 
 

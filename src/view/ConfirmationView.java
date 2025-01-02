@@ -23,7 +23,7 @@ public class ConfirmationView extends JFrame {
         setTitle(title);
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(resolutionCapture.getWidth() / 5, resolutionCapture.getHeight() / 5);
+        setSize(resolutionCapture.getWidth() / 3, resolutionCapture.getHeight() / 3);
         setLocationRelativeTo(null);
         setResizable(false);
         changeTheme(message);

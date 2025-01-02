@@ -33,10 +33,9 @@ public class ProductCompositionTableView extends JFrame {
         setTitle("Subprodutos");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ResolutionCapture resolutionCapture = new ResolutionCapture();
-        setSize(resolutionCapture.getWidth() / 2, resolutionCapture.getHeight() / 2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
         setContentPane(pnlMain);
-        setResizable(false);
         changeTheme();;
 
         //Ação do botão adicionar

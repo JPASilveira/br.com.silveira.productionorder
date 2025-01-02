@@ -48,9 +48,8 @@ public class ProductView extends JFrame {
         setTitle("Produto");
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
-        setResizable(false);
 
         if (isUpdate) {
             btnSave.setText("(F6) Atualizar");

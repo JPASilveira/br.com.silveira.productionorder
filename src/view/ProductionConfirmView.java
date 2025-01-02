@@ -48,9 +48,8 @@ public class ProductionConfirmView extends JFrame {
         setTitle("Confirmação");
         setContentPane(pnlMain);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
-        setResizable(false);
         changeTheme();
         DefaultTableModel modelOne = new DefaultTableModel(ProductionOrderService.getBasicProducts(productionView.getProductId(),productionView.getQuantity()), columnNames);
         DefaultTableModel modelTwo = new DefaultTableModel(ProductionOrderService.getCompositeProducts(productionView.getProductId(),productionView.getQuantity()), columnNames);

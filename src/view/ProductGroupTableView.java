@@ -33,10 +33,9 @@ public class ProductGroupTableView extends JFrame {
         setTitle("Grupo");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ResolutionCapture resolutionCapture = new ResolutionCapture();
-        setSize(resolutionCapture.getWidth() / 2, resolutionCapture.getHeight() / 2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
         setContentPane(pnlMain);
-        setResizable(false);
         changeTheme();
 
         DefaultTableModel model = new DefaultTableModel(data, new String[] {"ID", "NOME"});

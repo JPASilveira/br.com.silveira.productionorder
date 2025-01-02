@@ -33,10 +33,9 @@ public class RegistrationAddressTableView extends JFrame {
         ResolutionCapture resolutionCapture = new ResolutionCapture();
         setTitle("Endereços");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(resolutionCapture.getWidth()/2, resolutionCapture.getHeight()/2);
+        setSize(resolutionCapture.getMinWidth(), resolutionCapture.getMinHeight());
         setLocationRelativeTo(null);
         setContentPane(pnlMain);
-        setResizable(false);
         changeTheme();
 
         DefaultTableModel model = new DefaultTableModel(data, getTableColumns());
