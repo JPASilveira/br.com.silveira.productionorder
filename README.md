@@ -10,7 +10,7 @@ Este projeto tem como objetivo otimizar os processos de produção, oferecendo u
 * **Linguagem:** Java
 * **Framework:** Swing
 * **Banco de Dados:** H2
-* **IDE:** IntelliJ IDEA
+* **IDE:** IntelliJ IDEA + Swing UI Design Plugin
 * **Controle de Versão:** Git
 
 **Estrutura do Projeto**
@@ -20,9 +20,9 @@ O projeto está organizado em pacotes distintos para facilitar a manutenção e 
 * **model:** Representa as entidades do sistema (produtos, clientes, ordens de produção, etc.) como classes Java.
 * **view:** Contém as classes responsáveis pela interface gráfica do usuário, utilizando componentes Swing.
 * **controller:** Atua como intermediário entre a view e o model, gerenciando as ações do usuário e atualizando a interface.
-* **repository:** Realiza a persistência dos dados no banco de dados H2, utilizando JDBC ou algum ORM.
-* **util:** Contém classes auxiliares com funcionalidades comuns, como utilitários de data, validação de dados, etc.
-* **service (opcional):** Pode ser utilizado para encapsular a lógica de negócio mais complexa, separando-a da camada de controller.
+* **repository:** Realiza a persistência dos dados no banco de dados H2, utilizando JDBC.
+* **util:** Contém classes auxiliares com funcionalidades comuns, como validação de dados, etc.
+* **service:** Utilizado para encapsular a lógica de negócio mais complexa, separando-a da camada de controller.
 
 **Banco de Dados**
 
