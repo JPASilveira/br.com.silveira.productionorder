@@ -80,8 +80,11 @@ public class MainWindowView extends JFrame {
         btnContact.addActionListener(e -> cardLayout.show(pnlCenter, "Contact"));
 
         changeTheme();
-
         setupGlobalShortcuts();
+
+        SwingUtilities.invokeLater(() -> {
+            setExtendedState(JFrame.MAXIMIZED_BOTH);
+        });
 
         setVisible(true);
     }
