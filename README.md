@@ -44,7 +44,6 @@ O sistema utiliza um banco de dados H2 para armazenar as informações. As princ
 - [Instalador para Ubuntu](https://github.com/JPASilveira/br.com.silveira.productionorder/releases/download/v.1.01b/Ubuntu.Install.zip)
 - [Instalador para Windows](https://github.com/JPASilveira/br.com.silveira.productionorder/releases/download/v.1.01b/Windows.Install.zip)
 
-
 **Licença**
 
  Production Order © 2024 by JPASilveira is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
